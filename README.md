@@ -15,7 +15,7 @@
 
 SCI-writer 是一个 **Claude Code Skill**，将科学综述论文的完整生命周期自动化编排——从领域差距分析、系统性文献检索、逐节撰写、同行评审模拟、LaTeX 编译，到投稿包组装，全程一条龙。
 
-本 skill 在**上海交通大学感知科学与工程学院 王侃课题组**开发并经实战验证，首发论文：
+本 skill 在**上海交通大学自动化与感知学院 王侃课题组**开发并经实战验证，首发论文：
 
 > *"Wearable Electrochemical Sensing Systems Based on Microneedle Arrays: A Full-Chain Review from Sensor Fabrication to Intelligent Embedded Terminals"*  
 > 目标期刊：*Biosensors and Bioelectronics*（中科院一区 TOP）
@@ -346,7 +346,7 @@ skill 内置可穿戴电化学传感领域的 LaTeX 公式，可直接插入对�
 ## 关于
 
 **张元杰**（第一作者）· **王侃**（通讯作者，副教授）  
-上海交通大学 感知科学与工程学院  
+上海交通大学 自动化与感知学院  
 联系方式：wangkan@sjtu.edu.cn
 
 > *为想写论文、不想管工具的研究者而设计。*
