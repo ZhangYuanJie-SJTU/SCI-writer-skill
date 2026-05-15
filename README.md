@@ -1,6 +1,6 @@
 # SCI-writer
 
-> **全链路科学综述论文自动化编排系统**  
+> **全链路科学综述论文自动化编排系统**
 > *从文献检索到投稿级 LaTeX 包——全程自动化、全程审计、全程可复现。*
 
 [![版本](https://img.shields.io/badge/版本-4.1.0-blue)](SKILL.md)
@@ -8,6 +8,7 @@
 [![质量门控](https://img.shields.io/badge/门控-A%20%2F%20B%20%2F%20C-green)](SKILL.md)
 [![反幻觉](https://img.shields.io/badge/反幻觉-内置-orange)](SKILL.md)
 [![流水线](https://img.shields.io/badge/流水线-11%20阶段-purple)](SKILL.md)
+[![Affiliation](https://img.shields.io/badge/Affiliation-SJTU-blue)](https://www.sjtu.edu.cn)
 
 ---
 
@@ -17,7 +18,7 @@ SCI-writer 是一个 **Claude Code Skill**，将科学综述论文的完整生�
 
 本 skill 在**上海交通大学自动化与感知学院 王侃课题组**开发并经实战验证，首发论文：
 
-> *"Wearable Electrochemical Sensing Systems Based on Microneedle Arrays: A Full-Chain Review from Sensor Fabrication to Intelligent Embedded Terminals"*  
+> *"Wearable Electrochemical Sensing Systems Based on Microneedle Arrays: A Full-Chain Review from Sensor Fabrication to Intelligent Embedded Terminals"*
 > 目标期刊：*Biosensors and Bioelectronics*（中科院一区 TOP）
 
 skill **完全自包含**——不依赖任何伴侣 skill 即可运行完整流水线。若安装了加速器 skill（deep-research、academic-paper、paper-verification 等），会被自动检测并调用，缩短运行时间。
@@ -153,16 +154,16 @@ git clone https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill.git "C:\Users\<�
 
 四条规则，始终激活，不可关闭：
 
-**规则 1 — 引文溯源规则**  
+**规则 1 — 引文溯源规则**
 每个关于具体研究的声明必须有可验证的来源。没有来源 = `[NEEDS_REF]`，不允许自造引用。
 
-**规则 2 — 数值规则**  
+**规则 2 — 数值规则**
 每个量化数值（LOD、灵敏度、MARD、p值）必须可追溯到被验证论文的具体表格或图。
 
-**规则 3 — 最高级规则**  
+**规则 3 — 最高级规则**
 "first"、"highest"、"only"、"unprecedented" 等词必须附引用。没有引用则改为中性表述："among the reported approaches..."
 
-**规则 4 — 方法类型规则**  
+**规则 4 — 方法类型规则**
 被引论文的检测方法必须与引用语句所声明的方法一致。光学法 ≠ 电化学法。
 
 **验证标签分类：**
@@ -193,164 +194,15 @@ git clone https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill.git "C:\Users\<�
 
 ---
 
-## Stage 6.5 — 图片挂载核查
+## 作者
 
-v4.0 最有影响力的新增阶段，全部通过 Python 脚本自动执行：
-
-- **注释状态 `\includegraphics` 检测** — 扫描 `% \includegraphics` 模式并自动取消注释
-- **孤儿图片检测** — 每个 `\label{fig:X}` 必须在正文中有 ≥1 个 `\ref{fig:X}`
-- **孤儿表格检测** — 每个 `\label{tab:X}` 必须在正文中有 ≥1 个 `\ref{tab:X}`
-- **标题完整性** — 每个 figure 环境必须有非空 `\caption{}`
-- **表格图例一致性** — 表格正文中使用的每个符号必须在 caption 中定义
-
-**为什么这很重要**：图片文件生成后，`\includegraphics` 命令很容易仍处于注释状态（来自早期草稿阶段）。最终 PDF 渲染为空白框——一个在编译成功之前完全无声无息的故障。
+| | 姓名 | 单位 | 联系方式 |
+|---|---|---|---|
+| **开发者** | 张元杰 | 上海交通大学 自动化与传感科学与工程学院 硕士生 | [ORCID](https://orcid.org/0009-0001-0705-7793) |
+| **指导教师** | 王侃 | 上海交通大学 自动化与传感科学与工程学院 副教授 | wangkan@sjtu.edu.cn |
 
 ---
 
-## 流水线状态持久化
+## 许可证
 
-一篇综述需要 3–10 天。Context compaction 会发生多次。`sci_writer_state.md` 在每个阶段完成后写入磁盘，记录：
-
-- 当前阶段与已完成阶段列表
-- 每个 Gate 的通过/失败历史（含日期）
-- Stage 7 评分历史（三轮全记录）
-- 语料库状态（`[V]/[N]/[X]/[M]` 计数）
-- 图片状态表
-- 待处理的 `[AUTO]` 和 `[USER]` 项目
-
-`/sciw resume` 读取该文件并从上次检查点继续。
-
----
-
-## 领域配置系统
-
-### 使用内置微针/可穿戴传感配置
-
-```
-/sciw load microneedle
-```
-
-预配置内容：
-- 目标期刊：*Biosensors and Bioelectronics*
-- 5 个检索簇（制备、传感模态、系统集成、嵌入式智能、临床验证）
-- 7 个领域专属性能指标（葡萄糖 LOD、灵敏度、MARD、离子斜率等）
-- 6 个需确保覆盖的关键课题组
-- 检测方法分类体系（安培法、DPV、SWV、EIS、ISE、FSCV、荧光、SERS）
-- 3 篇需要差异化对比的已有综述
-
-### 自定义领域配置
-
-创建 `domain-config.yaml` 文件并通过 `/sciw config load domain-config.yaml` 加载。YAML schema 支持：
-- 论文元数据（标题、期刊、字数目标、参考文献目标数）
-- 多查询检索簇
-- 带单位和阈值的性能指标
-- 检测方法分类体系（供 Gate B 方法类型核查）
-- 需差异化的已有综述列表
-- 独特贡献声明
-
----
-
-## Gate C 自动验证脚本
-
-所有脚本使用 Python 标准库，无需外部工具。
-
-| 验证项 | 命令 | 标准 |
-|--------|------|------|
-| 摘要字数 | `/sciw verify abstract` | ≤300 词 |
-| 亮点字符数 | `/sciw verify highlights` | 每条 ≤85 字符 |
-| 正文字数估算 | `/sciw verify wordcount` | 8,000–15,000 词 |
-| 参考文献计数 | `/sciw verify references` | ≥130 条 |
-| 图片挂载状态 | `/sciw mount-check` | 零注释/零孤儿 |
-| 全部验证 | `/sciw verify all` | 以上全部 |
-
----
-
-## 电化学传感公式银行
-
-skill 内置可穿戴电化学传感领域的 LaTeX 公式，可直接插入对应章节：
-
-| 公式 | 用途 |
-|------|------|
-| Cottrell 方程 | 安培法电流-时间响应 |
-| Randles–Ševčík 方程 | 伏安法峰电流 vs 扫描速率 |
-| Nernst 方程 | 电位法/离子选择电极（斜率 59.2/z mV/decade） |
-| Butler–Volmer 方程 | 电极动力学 |
-| Randles 等效电路（EIS） | 阻抗谱分析 |
-| LOD 公式（IUPAC） | 检测限 = 3σ_b / S |
-| 灵敏度公式 | S = Δi/ΔC [μA mM⁻¹ cm⁻²] |
-
----
-
-## 更新日志
-
-### v4.1.0（2026-05-14）
-- **流水线状态持久化** — `sci_writer_state.md` + `/sciw resume` 命令，彻底解决跨会话 pipeline 位置丢失问题
-- **BibTeX key 命名规范** — `AuthorYYYYKeyword` 强制标准 + 自动合规性检查
-- **Gate A 例外路径** — 领域文献稀少时（≥80 篇）的文档化补偿控制方案
-- **Gate B 三级核查体系** — Tier 1/2/3 协议替代模糊的"高风险"启发式判断
-- **四个 Python 验证脚本** — 摘要字数、亮点字符数、LaTeX 正文字数、参考文献计数，Gate C 全自动化
-- **Stage 6.5：表格图例一致性检查** — 自动扫描 caption 定义符号 vs. 表格正文使用符号
-- **Elsevier 模板下载 URL 修复** — `mirrors.ctan.org` 直链 + HTML 内容校验（原 `www.ctan.org/tex-archive` 是页面 URL 非直链）
-- **Stage 7 阈值逻辑修正** — R1/R2/R3 三轮阈值表统一清晰，消除 Scoring Protocol 与 Score Escalation Rule 之间的自相矛盾
-
-### v4.0.0（2026-05-14）
-- **Stage 6.5** — 图片挂载与交叉引用核查（强制新阶段）
-- **R6 审稿人** — 格式/集成审核员加入五角色面板，补齐格式盲区
-- **Gate B Part 2** — 方法类型一致性核查；`[METHOD_X]` 标签
-- **Gate C** — 交叉引用完整性；`\includegraphics` 非注释状态检查
-- **Stage 10** — `[AUTO]`/`[USER]` 交付任务分类
-
-### v3.0.0
-- 首次发布：10 阶段流水线、Gates A/B/C、PRISMA 协议、5 角色评审模拟、内置微针领域配置
-
----
-
-## 完整流水线运行后的文件结构
-
-```
-[项目根目录]/           ← 所有文件平铺（Editorial Manager 要求）
-├── sci_writer_state.md ← 流水线状态（断点续传检查点）
-├── main.tex            ← LaTeX 源文件（约 700–900 行）
-├── references.bib      ← BibTeX 数据库（≥130 条，AuthorYYYYKeyword key）
-├── generate_figures.py ← Python 图片生成脚本（matplotlib）
-├── fig_01_*.png        ← 所有图片，≥300 DPI
-├── ...
-├── fig_0N_*.png
-├── graphical_abstract.png  ← 400×300 px 石墨摘要
-├── elsarticle.cls      ← [AUTO] 从 mirrors.ctan.org 自动下载
-├── elsarticle-num.bst  ← [AUTO] 从 mirrors.ctan.org 自动下载
-├── highlights.txt      ← 3–5 条，每条 ≤85 字符
-├── cover_letter.md     ← 含 [USER] 占位符（电话/基金号）
-├── revision_log.md     ← P0/P1 修订记录
-├── review_report.md    ← 6 位审稿人评分（R1/R2/R3 三轮）
-├── gate_c_checklist.md ← 所有项目 ✓
-└── submission_package.zip  ← 可直接上传的投稿压缩包
-```
-
----
-
-## 兼容性
-
-| 工具 | 必须 | 说明 |
-|------|------|------|
-| Claude Code | ✅ 必须 | 已在 Claude Sonnet 4.6+ 上测试 |
-| Python（仅标准库） | ✅ 必须 | 图片生成与验证脚本 |
-| matplotlib + numpy | 推荐 | Stage 6 Python 图片生成 |
-| pdflatex | 可选 | LaTeX 编译；不可用时自动回退到 matplotlib |
-| tavily-search skill | 推荐 | Stage 2 文献检索（Tier 1 检索通道） |
-| deep-research skill | 可选 | PRISMA 模式系统性检索加速器 |
-| paper-verification skill | 可选 | 批量 DOI 核查加速器 |
-
----
-
-## 关于
-
-**张元杰**（第一作者）· **王侃**（通讯作者，副教授）  
-上海交通大学 自动化与感知学院  
-联系方式：wangkan@sjtu.edu.cn
-
-> *为想写论文、不想管工具的研究者而设计。*
-
----
-
-*SCI-writer v4.1.0 · 上海交通大学 王侃课题组 · 2026-05-14*
+本 skill 为上海交通大学王侃课题组内部工具。使用 Claude Code 作为底层 AI 框架。
