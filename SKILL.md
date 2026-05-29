@@ -1,22 +1,23 @@
 # SCI-writer
 ## Full-Chain Scientific Review Paper Orchestration System
-**Version:** 4.2.0 | **Target:** Q1/CAS-TOP Journals | **Mode:** Self-Contained + Optional Accelerators
+**Version:** 5.0.0 | **Target:** Nature-Communications-Level Quality (Q1/CAS-TOP baseline) | **Mode:** Self-Contained + Model-Adaptive + Iterative Quality Loops
 
-### What's New in v4.2 (Changelog)
-- **v4.1 → v4.2 major:**
-  - **Unified Pedagogical-Rigor Framework [NEW]** — Teaching and peer-review quality are no longer separate goals; the "measurement instrument chain" narrative structure serves both simultaneously
-  - **Stage 1.3 Measurement Chain Framework [NEW]** — §1 now includes a technology history timeline (§1.2) and a unifying measurement system framework (§1.3) that readers use as cognitive scaffolding throughout the paper
-  - **Stage 2 Search Pattern D/E/F [NEW]** — Foundational & tutorial papers (Pattern D), Chinese literature via CNKI/Wanfang (Pattern E), Commercial & industrial papers (Pattern F)
-  - **Stage 4 Sub-stage 4.5 Knowledge Scaffolding [NEW]** — Each section gets prerequisite mapping, concept introduction protocol, worked examples, and decision flowcharts
-  - **Stage 5 Pass 2.5 Pedagogical Enhancement [NEW]** — Between content writing (Pass 2) and evidence audit (Pass 3): concept introduction check, analogy check, decision guide check, quantitative table check
-  - **Stage 7 R7 New Reader Simulator [NEW]** — 7th reviewer simulates a first-year graduate student; tests understandability without sacrificing rigor
-  - **Domain Config: Decision Flowcharts [NEW]** — Material×geometry selection guide and sensing modality selection matrix embedded in outline
-  - **Domain Config: Commercial Benchmarks [NEW]** — Dexcom/Abbott/Medtronic/Senseonics product data for clinical validation context
-  - **Domain Config: Chinese Research Groups [NEW]** — 10+ CN research teams added for balanced geographic coverage
-- **v4.0 → v4.1 patch:**
+### What's New in v5.0 (Changelog)
+- **v4.2 → v5.0 major — Quality Architecture Overhaul:**
+  - **Thinking-First Protocol [NEW]** — Every stage begins with explicit reasoning before action. Prevents "write first, think later" failure mode that degrades quality in weaker models
+  - **Iterative Writing Loop (Stage 5 redesign) [NEW]** — Each section cycles: Think → Draft → Self-Review → Revise until quality threshold met. Max 3 iterations. Dramatically improves output quality for all model tiers
+  - **Narrative Flow Engine [NEW]** — Explicit transition templates between sections. Every section opens with a bridge from previous and closes with a bridge to next. Eliminates "stapled together" feel
+  - **Argumentation Structure Templates [NEW]** — Each section follows Claim → Evidence → Reasoning → Implication pattern. Makes arguments structurally sound, not just factually correct
+  - **Multi-Scale Quality System [NEW]** — Paragraph-level (topic sentence, evidence density, coherence), section-level (5-dimension scoring), paper-level (narrative arc, contribution clarity)
+  - **Model Adaptation Layer [NEW]** — Automatic model-tier detection → adjusted scaffolding depth. Weaker models get more structured templates, explicit reasoning chains, fill-in-the-blank prompts
+  - **Writing Quality Bank [NEW]** — Curated exemplary sentence patterns for each section type. Models use these as style anchors, not templates to copy
+  - **Continuous Writing Review (R8) [NEW]** — Embedded quality reviewer in Stage 5 loop. Checks each paragraph against Nature-level standards before moving on
+  - **Nature-Level Writing Benchmark [NEW]** — Concrete criteria: opening hooks, visual storytelling, implication-first conclusions, sophisticated data interpretation
+  - **Self-Correction Protocol [NEW]** — Automatic uncertainty detection → targeted re-verification. Prevents confident-sounding errors from weaker models
+- **v4.1 → v4.2 (retained):**
+  - Unified Pedagogical-Rigor Framework · Measurement Chain Framework · Search Pattern D/E/F · Knowledge Scaffolding · Pass 2.5 Pedagogical Enhancement · R7 New Reader Simulator · Decision Flowcharts · Commercial Benchmarks · Chinese Research Groups
+- **v4.0 → v4.1 (retained):**
   - Pipeline State Persistence · BibTeX Key Convention · Gate A Exception Path · Verification Scripts · Table Legend Check · Elsevier URL Fix · Stage 7 Threshold Fix
-- **v3.0 → v4.0 upgrades:**
-  - Stage 6.5 · R6 Reviewer · Method-Type Consistency · Score Escalation · [AUTO]/[USER] Classification
 
 ---
 
@@ -57,22 +58,34 @@ Some tasks reference skills that may not be installed. SCI-writer has built-in f
 
 ---
 
-## Architecture: Self-Contained Core + Optional Accelerators
+## Architecture: Self-Contained Core + Model-Adaptive Quality + Optional Accelerators
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│              SCI-writer v4.2.0                               │
+│              SCI-writer v5.0.0                               │
 │        Full-Chain Review Paper Pipeline                       │
 ├──────────────────────────────────────────────────────────────┤
 │  CORE PIPELINE — fully self-contained, zero dependencies      │
 │  ─ All 10-stage logic + 3 quality Gates embedded              │
 │  ─ PRISMA search protocol built-in (Stage 2)                  │
-│  ─ 4-pass writing quality protocol built-in (Stage 5)         │
+│  ─ Iterative writing loop with 5-dimension scoring (Stage 5)  │
+│  ─ Thinking-First Protocol: explicit reasoning before action  │
+│  ─ Narrative Flow Engine: transition management + argument arc│
+│  ─ Argumentation Templates: AREI pattern for every section    │
+│  ─ Multi-Scale Quality: paragraph → section → paper checks    │
 │  ─ Figure mount + cross-reference audit built-in (Stage 6.5)  │
-│  ─ 6-persona peer review simulation built-in (Stage 7)        │
+│  ─ 8-persona peer review simulation built-in (Stage 7)        │
 │  ─ Anti-hallucination + method-type audit built-in (Gate B)   │
+│  ─ Self-Correction Protocol: automatic uncertainty detection  │
 │  ─ Works for ANY domain via YAML config                       │
 │  ─ Distributable: ONE file install, full capability           │
+├──────────────────────────────────────────────────────────────┤
+│  🧠 MODEL ADAPTATION LAYER (v5.0 — auto-adjusts to model)    │
+│  ─ Tier 1 (Frontier): minimal scaffolding, 1 iteration       │
+│  ─ Tier 2 (Strong): moderate prompts, 2 iterations           │
+│  ─ Tier 3 (Efficient): templates + reasoning chains, 2-3 iter│
+│  ─ Tier 4 (Lightweight): fill-in-blank + sentence starters   │
+│  ─ Auto-detects model tier at pipeline start                  │
 ├──────────────────────────────────────────────────────────────┤
 │  ⚡ OPTIONAL ACCELERATORS (companion skills, if present)      │
 │  ─ academic-pipeline: parallel multi-agent execution          │
@@ -110,7 +123,7 @@ PHASE II — CONSTRUCTION
   ▓▓▓▓▓▓▓▓▓ GATE B: Citation Integrity + Method-Type Audit ▓▓▓▓▓▓▓▓▓
 
 PHASE III — REFINEMENT
-  Stage 7   │ Multi-Persona Peer Review Simulation (6 reviewers)
+  Stage 7   │ Multi-Persona Peer Review Simulation (8 reviewers: R1-R8)
   Stage 8   │ Revision & Rebuttal Engineering
   Stage 9   │ Journal Formatting & LaTeX Compilation
   ▓▓▓▓▓▓▓▓▓ GATE C: Submission Readiness Check ▓▓▓▓▓▓▓▓▓
@@ -363,9 +376,31 @@ Some research domains have inherently fewer qualifying papers (emerging fields, 
 
 ## Stage 3 — Deep Synthesis & Knowledge Extraction
 
-**Goal:** Transform the raw corpus into structured knowledge: key findings, quantitative benchmarks, methodological taxonomy.
+**Goal:** Transform the raw corpus into structured knowledge: key findings, quantitative benchmarks, methodological taxonomy. **v5.0 addition:** Before extracting, build a concept map that reveals the knowledge structure — this prevents extraction from becoming mechanical cataloging.
 
-**Extraction Protocol (for each paper in corpus):**
+### Thinking-First: Knowledge Structure Map (v5.0)
+
+Before starting per-paper extraction, spend 2 minutes building a concept map:
+
+```
+[KNOWLEDGE STRUCTURE — §X domain]
+Central phenomenon: [What is the core thing being studied?]
+├── Branch 1: [Material/physical aspect]
+│   ├── Key question: [What do we need to know?]
+│   ├── Current understanding: ⊕⊕⊕⊕ / ⊕⊕⊕○ / ⊕⊕○○ / ⊕○○○
+│   └── Knowledge gap: [What's missing?]
+├── Branch 2: [Functional/chemical aspect]
+│   ├── Key question: ...
+│   ├── Current understanding: ...
+│   └── Knowledge gap: ...
+├── Branch 3: [System/integration aspect]
+│   └── ...
+└── Cross-connections: [How do branches interact?]
+```
+
+This map guides extraction — papers that fill knowledge gaps get higher priority and more detailed notes.
+
+### Extraction Protocol (for each paper in corpus)
 
 Extract and store in `synthesis_notes.md`:
 ```
@@ -533,48 +568,168 @@ Before finalizing outline, verify:
 
 ---
 
-## Stage 5 — Section-by-Section Drafting
+## Stage 5 — Iterative Section Drafting (v5.0 redesign)
 
-**Goal:** Write each section to publication quality, with every claim sourced, every number verified.
+**Goal:** Write each section to Nature-Communications-level quality through an iterative Think → Draft → Review → Revise loop, with every claim sourced, every number verified, every argument airtight.
 
-### Writing Protocol Per Section
+**Core change from v4.2:** The sequential 4-pass protocol is replaced by an **iterative quality loop**. Each section cycles through thinking, drafting, self-review, and revision until the section-level quality score reaches ≥70/100 (max 3 iterations). This ensures quality is *achieved*, not just *attempted*.
 
-**Pre-writing checklist:**
+### The Iterative Writing Loop
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│              Stage 5 Iterative Loop                           │
+│                                                                │
+│  ┌─────────┐   ┌─────────┐   ┌──────────┐   ┌──────────┐    │
+│  │ THINK   │──▶│ DRAFT   │──▶│ REVIEW   │──▶│  REVISE  │    │
+│  │ (1 min) │   │ (20 min)│   │ (5 min)  │   │ (10 min) │    │
+│  └─────────┘   └─────────┘   └──────────┘   └────┬─────┘    │
+│       ▲                                           │           │
+│       │         score < 70                         │           │
+│       └───────────────────────────────────────────┘           │
+│                                                                │
+│  Iteration 1: Full draft (structure + content)                 │
+│  Iteration 2: Targeted revision (fix low-scoring dimensions)  │
+│  Iteration 3: Polish pass (prose quality + transitions)        │
+│                                                                │
+│  Exit: score ≥ 70 OR max iterations reached                   │
+└──────────────────────────────────────────────────────────────┘
+```
+
+### Pre-Writing Checklist
+
 - [ ] Section has ≥15 papers assigned in corpus
 - [ ] Performance comparison table (if applicable) is complete
 - [ ] Methodological taxonomy for this section is defined
 - [ ] Previous section has been written (maintain narrative continuity)
+- [ ] Argument map for this section is defined (from Stage 4)
+- [ ] Transition matrix entries for §[N-1]→§[N] and §[N]→§[N+1] are ready
 
-**Drafting prompt structure:**
+### Step 0 — THINK (mandatory, 1 minute per section)
+
+Before writing ANY text, produce a structured thinking block:
+
+```
+[THINKING — §X.Y: Section Title]
+Central claim: [The single arguable statement this section proves]
+Strongest evidence: [Top 3 papers with specific data points]
+Argument structure: [How paragraphs build on each other: claim → evidence → implication]
+Weak point: [What a reviewer would challenge first]
+Bridge from §[N-1]: [How the previous section's conclusion leads here]
+Bridge to §[N+1]: [How this section's conclusion enables the next]
+Pedagogical hook: [One analogy or concept introduction for newcomers]
+```
+
+This block guides the draft and is discarded after the section passes review.
+
+### Step 1 — DRAFT (Iteration 1, 20 minutes per section)
+
+**Drafting prompt structure (model-adaptive — see Model Adaptation Layer for tier-specific scaffolding):**
 ```
 Write Section [X.Y]: [Title]
 
-Context:
+CONTEXT:
 - Target journal: [journal name] — style: [formal/concise/detailed]
 - Paper title: [full title]
-- This section covers: [scope description]
+- This section's central claim: [from thinking block]
 - Connects to: §[X-1] (preceding) and §[X+1] (following)
+- Transition from §[X-1]: [specific bridge sentence from thinking block]
+- Transition to §[X+1]: [specific bridge sentence from thinking block]
 
-Source papers to incorporate:
+ARGUMENT STRUCTURE (from Stage 4 argument map):
+- Paragraph 1: [claim] — evidence: [papers]
+- Paragraph 2: [claim] — evidence: [papers]
+- Paragraph 3: [claim] — evidence: [papers]
+...
+
+SOURCE PAPERS (verified in corpus, with method types):
 [list 10–15 most relevant papers with key findings AND their method types]
 
-Performance data to mention:
-[list 3–5 specific numbers with sources]
+PERFORMANCE DATA TO INTEGRATE:
+[list 3–5 specific numbers with exact sources: "Author (Table X) reported Y ± Z"]
 
-Specific claims to make:
-1. [Claim 1] — supported by [Author Year] — method type: [X]
-2. [Claim 2] — supported by [Author Year] — method type: [X]
+WRITING QUALITY REQUIREMENTS:
+- Opening: start with a bridge from §[X-1] or a compelling claim — NOT "In this section..."
+- Every paragraph: topic sentence (claim) → evidence → reasoning → transition
+- Citations: ≥1 per 3 sentences in technical paragraphs
+- Quantitative claims: include units, error ranges, sample sizes when available
+- Contradictions: present both sides with attribution, not "some studies show..."
+- Pedagogical: first occurrence of each technical term gets a one-sentence explanation
+- Closing: bridge to §[X+1] — setup the next section's question
 
-Anti-hallucination constraint:
-Every specific number, every "first", every superlative MUST cite a paper
-from the provided list above. If you cannot support a claim with the
-provided papers, write [NEEDS_REF] as a placeholder instead of inventing.
+ANTI-HALLUCINATION CONSTRAINT:
+Every specific number, every "first", every superlative MUST cite a paper from the list above.
+Cannot support a claim → write [NEEDS_REF] instead of inventing.
 
-Method-type constraint:
-If this section describes [method type], only cite papers that use [method type].
-Do NOT cite fluorescence papers in an electrochemical section.
-Do NOT cite in vitro papers as clinical validation evidence.
+METHOD-TYPE CONSTRAINT:
+Only cite papers that use the method described in the paragraph.
+Fluorescence paper in an EIS paragraph = FORBIDDEN.
+In vitro paper as clinical evidence = FORBIDDEN.
 ```
+
+### Step 2 — SELF-REVIEW (after each iteration, 5 minutes)
+
+Run the **Multi-Scale Quality Check** on the drafted section:
+
+**Paragraph-level scan (quick):**
+```
+For each paragraph in the draft:
+[ ] Topic sentence: first sentence states a clear, arguable claim?
+[ ] Evidence density: ≥1 citation per 3 sentences?
+[ ] Coherence: every sentence relates to the topic sentence?
+[ ] Transition: last sentence bridges to next paragraph?
+[ ] No orphan facts: every number sourced, every claim supported?
+[ ] Sentence variety: not all starting with "The" or "This"?
+```
+
+**Section-level scoring (5 dimensions, 20 pts each):**
+```
+§X.Y Quality Score:
+  Argument Strength:  [0-20] — Does this section prove its central claim?
+  Evidence Quality:   [0-20] — Is every claim supported by verified data?
+  Narrative Flow:     [0-20] — Does the section read as a coherent story?
+  Pedagogical Value:  [0-20] — Can a newcomer learn from this?
+  Nature-Level Prose: [0-20] — Does the writing meet top-journal standards?
+  TOTAL: [0-100]
+
+  Score ≥ 70: PASS — move to next section
+  Score < 70: REVISE — identify lowest-scoring dimensions, target fixes
+```
+
+**Nature-Level Writing Checklist (subset of Nature-Level Prose dimension):**
+```
+[ ] Opening impact: first 2 sentences engage the reader with a claim or question
+[ ] No filler phrases: "It is worth noting that", "Interestingly", "It should be noted"
+[ ] Active voice: ≥60% of sentences
+[ ] Varied sentence length: mix of short (<15 words) and long (>25 words) sentences
+[ ] Precise language: no vague quantifiers ("many", "significant", "considerable") without numbers
+[ ] Sophisticated data interpretation: not just "X achieved Y" but "X achieved Y, which exceeds Z by N%, suggesting..."
+```
+
+### Step 3 — REVISE (Iterations 2-3, 10 minutes each)
+
+**Targeted revision based on lowest-scoring dimensions:**
+
+| Low Dimension | Revision Strategy |
+|--------------|-------------------|
+| **Argument Strength < 15** | Add AREI cycles (Claim→Evidence→Reasoning→Implication) to weak paragraphs |
+| **Evidence Quality < 15** | Search for missing sources, verify numbers, resolve [NEEDS_REF] placeholders |
+| **Narrative Flow < 15** | Add transition sentences between paragraphs, reorder if logical sequence is wrong |
+| **Pedagogical Value < 15** | Add concept introductions for technical terms, add analogies, check prerequisite assumptions |
+| **Nature-Level Prose < 15** | Eliminate filler, convert passive to active, vary sentence structure, strengthen opening |
+
+**Revision constraint:** Only modify paragraphs that scored poorly. Do NOT rewrite paragraphs that already score well — this prevents regression.
+
+### Step 4 — RE-SCORE (after revision)
+
+Re-run the 5-dimension scoring. If score improved but still < 70, proceed to next iteration. If score did NOT improve, the revision was cosmetic — return to Step 1 with a fundamentally different approach.
+
+**Max iterations per section: 3** (prevents infinite loops)
+- Iteration 1: Full draft (Steps 0-2)
+- Iteration 2: Targeted revision (Steps 2-3)
+- Iteration 3: Polish pass (Steps 2-3, focused on prose quality)
+
+After 3 iterations, accept the section if score ≥ 65. Flag for Stage 7 reviewer attention if score < 70.
 
 ### Electrochemical Domain Formula Bank (Wearable Sensing)
 
@@ -976,7 +1131,7 @@ FAIL → return to Stage 5/corpus and fix
 
 **Goal:** Identify every weakness the reviewers will find — before submission.
 
-### The 6-Reviewer Panel (v4.0 — added R6)
+### The 8-Reviewer Panel (v5.0 — added R8 Writing Quality Auditor)
 
 **R1 — Domain Expert (Field Authority)**
 Focus: Technical accuracy, depth, completeness within the field
@@ -1062,29 +1217,51 @@ R7 < 70 = add pedagogical scaffolding (concept introductions, analogies, decisio
      but do NOT reduce technical depth — add clarity, not simplification.
 R7 is scored in addition to R1–R6; it does not replace any existing reviewer.
 
+**R8 — Writing Quality Auditor (NEW in v5.0)**
+Focus: Does the writing itself meet Nature-Communications-level standards? This reviewer evaluates prose quality, not technical content (that's R1's job).
+
+Evaluation dimensions:
+1. **Opening hooks** (25 pts): Does each section open with a compelling claim, question, or insight — NOT "In this section, we will discuss..."?
+2. **Argumentation structure** (25 pts): Does each subsection contain complete AREI cycles (Claim→Evidence→Reasoning→Implication)?
+3. **Narrative flow** (25 pts): Are transitions between paragraphs and sections explicit and logical? Does the paper read as one coherent story, not N stapled sections?
+4. **Prose quality** (25 pts): Varied sentence structure, active voice dominance, no filler phrases, precise quantification, sophisticated data interpretation?
+
+Attack vectors:
+- "Section X opens with 'In this section...' — a jarring break from the Nature-level quality of the rest"
+- "Paragraph 3 of §Y states a claim but provides no reasoning connecting evidence to conclusion"
+- "The transition from §3 to §4 is abrupt — no bridge sentence connecting sensing principles to applications"
+- "Sentences in §Z are uniformly 20 words long — reads like a bullet list, not prose"
+- "Data interpretation in §W is superficial: 'X achieved Y' without comparison, context, or implication"
+
+R8 < 70 = prose revision required in Stage 8 (P1 priority)
+R8 is scored in addition to R1–R7; it specifically evaluates the writing loop output from Stage 5.
+
 ### Scoring Protocol
 
-For each reviewer, score 0–100 on:
+For each reviewer (R1–R6), score 0–100 on:
 - Technical rigor (25 pts)
 - Completeness of coverage (25 pts)
 - Clarity and organization (25 pts)
 - Novelty and positioning (25 pts)
 
+R7 uses its own 4-dimension scoring (see above). R8 uses its own 4-dimension scoring focused on prose quality (see above).
+
 ### Score Escalation Rule — Three Rounds (v4.1 fix: resolves threshold contradiction)
 
 Stage 7 runs up to 3 times across the pipeline. Each round has its own threshold:
 
-| Round | When | Pass threshold | Min single reviewer (R1–R6) | R7 minimum |
-|-------|------|---------------|---------------------------|------------|
-| **R1** — Initial Stage 7 (pre-Stage 8) | After Stage 6.5 | avg ≥ 78 | ≥ 70 | ≥ 65 |
-| **R2** — After Stage 8 P0 fixes | Mandatory re-score after P0 revisions | avg ≥ 80 | ≥ 75 | ≥ 70 |
-| **R3** — After Stage 8 P1 fixes | Optional re-score after P1 revisions | avg ≥ 82 | ≥ 78 | ≥ 75 |
+| Round | When | Pass threshold | Min single reviewer (R1–R6) | R7 minimum | R8 minimum |
+|-------|------|---------------|---------------------------|------------|------------|
+| **R1** — Initial Stage 7 (pre-Stage 8) | After Stage 6.5 | avg ≥ 78 | ≥ 70 | ≥ 65 | ≥ 65 |
+| **R2** — After Stage 8 P0 fixes | Mandatory re-score after P0 revisions | avg ≥ 80 | ≥ 75 | ≥ 70 | ≥ 70 |
+| **R3** — After Stage 8 P1 fixes | Optional re-score after P1 revisions | avg ≥ 82 | ≥ 78 | ≥ 75 | ≥ 75 |
 
 **Additional constraints (all rounds):**
 - R6 (Format Auditor) score < 70 in any round → fix formatting before re-scoring R6
 - R7 (New Reader Simulator) score < 65 in R1 → add pedagogical scaffolding and re-score
+- R8 (Writing Quality) score < 65 in R1 → prose revision required (P1 priority in Stage 8)
 - If avg score (R1–R6) decreases from R1→R2 after revisions: the revisions were cosmetic — return to Stage 5 for substantive rewriting
-- **Final delivery standard: R2 avg (R1–R6) ≥ 80 AND R7 ≥ 70** (R3 is best-effort, not blocking)
+- **Final delivery standard: R2 avg (R1–R6) ≥ 80 AND R7 ≥ 70 AND R8 ≥ 70** (R3 is best-effort, not blocking)
 
 **Gate C uses R2 avg score (R1–R6)** as the primary quality metric, plus **R7 ≥ 70** as the pedagogical quality metric. Record all round scores in `review_report.md`.
 
@@ -1356,6 +1533,7 @@ GATE C Checklist:
 [ ] Peer review simulation: average score (R1–R6) ≥ 80/100, all 6 reviewers ≥ 65
 [ ] R6 (Format Auditor) score ≥ 70
 [ ] R7 (New Reader Simulator) score ≥ 70 — pedagogical quality confirmed
+[ ] R8 (Writing Quality Auditor) score ≥ 70 — Nature-level prose quality confirmed
 [ ] All P0 and P1 revision items resolved and verified
 [ ] Word count: within ±10% of journal guideline
 [ ] All figures: ≥300 DPI, files on disk, \includegraphics active and correct filename
@@ -1370,6 +1548,9 @@ GATE C Checklist:
 [ ] §1 contains technology history timeline and unifying framework diagram reference
 [ ] Each technical section has ≥1 concept introduction (first-occurrence term explained)
 [ ] Decision flowcharts/selection matrices present for design-choice sections
+[ ] Narrative flow: each section opens with bridge from previous, closes with bridge to next
+[ ] Argumentation: each major subsection contains ≥1 complete AREI cycle
+[ ] Central argument: stated in §1, served by every section, restated in §8
 
 PASS → Stage 10
 FAIL → identify failed items, loop back to Stage 5/6.5/7/9 as appropriate
@@ -1806,6 +1987,384 @@ Gate B clears all `[N]`, `[X]`, and `[M]` before submission.
 
 ---
 
+## Thinking-First Protocol (v5.0 — always active)
+
+**Problem this solves:** Models (especially weaker ones) tend to generate text immediately without explicit reasoning, leading to shallow analysis, weak arguments, and poor narrative flow. This protocol forces a thinking step before every significant output.
+
+**The principle: Think → Plan → Write → Verify. Never skip thinking.**
+
+### When Thinking Is Mandatory
+
+| Pipeline Event | Thinking Required | Output |
+|---------------|------------------|--------|
+| Stage 3: Per-paper extraction | 30 seconds: what is this paper's unique contribution to our review? | Extraction note with "contribution tag" |
+| Stage 4: Outline design | 2 minutes: what is the argument arc? How does each section serve the central thesis? | Argument map |
+| Stage 5: Per-section drafting | 1 minute: what claim does this section prove? What evidence is strongest? | Claim-evidence plan |
+| Stage 5: Per-paragraph writing | 15 seconds: what is this paragraph's single claim? What evidence supports it? | Topic sentence + source list |
+| Stage 7: Per-reviewer simulation | 30 seconds: what is the weakest point this reviewer would attack? | Attack vector list |
+| Stage 8: Per-revision | 15 seconds: does this fix address the root cause or just the symptom? | Root cause statement |
+
+### Thinking Prompt Template (use before each writing task)
+
+```
+Before writing, answer these questions explicitly:
+
+1. WHAT is the single most important claim this [section/paragraph] must prove?
+2. WHY does the reader need to know this? (What question does it answer from the previous section?)
+3. WHAT evidence (specific papers, data, numbers) supports this claim?
+4. HOW does this connect to the next section? (What does it enable the reader to understand?)
+5. WHAT is the weakest point in this argument? (Pre-empt the reviewer's attack)
+
+Write your answers in 2-3 sentences each, THEN write the actual text.
+```
+
+### Thinking Output Format
+
+For each thinking step, output a structured reasoning block before the actual content:
+
+```
+[THINKING — Stage X.Y]
+Claim: [What this section/paragraph proves]
+Evidence: [Strongest supporting papers/data]
+Connection: [How it links to previous and next sections]
+Weak point: [What a reviewer would challenge]
+Strategy: [How to address the weak point in the writing]
+```
+
+This thinking block is NOT included in the final paper — it guides the writing process and is discarded after the section passes quality review.
+
+---
+
+## Model Adaptation Layer (v5.0 — auto-detects model tier)
+
+**Problem this solves:** A prompt that works perfectly for Claude Opus may produce mediocre output from DeepSeek-V4-Flash. The system must adapt its scaffolding depth to the model's capability.
+
+### Model Tier Detection
+
+At pipeline start, detect the active model and set scaffolding level:
+
+| Model Tier | Examples | Scaffolding Level | Iteration Budget |
+|-----------|---------|-------------------|-----------------|
+| **Tier 1 — Frontier** | Claude Opus, GPT-4o | Minimal — trust the model's judgment | 1 iteration per section (usually sufficient) |
+| **Tier 2 — Strong** | Claude Sonnet, DeepSeek-V3 | Moderate — structured prompts + self-review | 2 iterations per section |
+| **Tier 3 — Efficient** | DeepSeek-V4-Pro, Mimo-v2.5-pro | Heavy — templates + explicit reasoning chains + fill-in-the-blank | 2-3 iterations per section |
+| **Tier 4 — Lightweight** | DeepSeek-V4-Flash, small models | Maximum — paragraph-level templates + sentence starters + mandatory self-verification | 3 iterations per section |
+
+### Scaffolding Adaptations by Tier
+
+**Tier 1 (Frontier) — Minimal scaffolding:**
+- Standard prompts as written in Stage 5
+- Trust the model to self-review
+- 1 iteration per section (quality gate catches issues)
+
+**Tier 2 (Strong) — Moderate scaffolding:**
+- Add explicit thinking prompts before each section
+- Self-review checklist after each section
+- 2 iterations: draft → review → revise
+
+**Tier 3 (Efficient) — Heavy scaffolding:**
+- **Paragraph templates** for each section type (see Writing Quality Bank below)
+- **Explicit reasoning chain** before each paragraph
+- **Fill-in-the-blank** structure for technical claims: "[Method] achieves [metric] of [value ± uncertainty] [Author, Year], which [comparison to state-of-art]. This [significance] because [reasoning]."
+- **Self-verification prompt** after each paragraph: "Is every number cited? Is every claim supported? Does this paragraph have a clear topic sentence?"
+- 2-3 iterations with explicit quality scoring
+
+**Tier 4 (Lightweight) — Maximum scaffolding:**
+- All Tier 3 adaptations PLUS:
+- **Sentence starters** for each paragraph type
+- **Mandatory fact-check loop**: after writing each factual claim, search for the source paper and verify the number before proceeding
+- **Simplified vocabulary guidance**: prefer concrete over abstract, prefer active over passive
+- **Shorter paragraphs**: 100-150 words (vs 150-250 for Tier 1)
+- **Explicit transition phrases** provided, not generated
+- 3 iterations with paragraph-level scoring
+
+### Auto-Detection Command
+
+```
+/sciw detect-model    → Show detected model tier and active scaffolding level
+/sciw set-model [1-4] → Override auto-detection (manual control)
+```
+
+---
+
+## Writing Quality Bank (v5.0 — exemplary patterns for each section type)
+
+**Purpose:** Provide concrete sentence-level patterns that anchor writing quality. These are NOT templates to copy — they are style references that the model adapts to the specific content.
+
+### Introduction Patterns
+
+**Opening hook (Nature-style):**
+```
+GOOD: "Every 8 seconds, someone dies from a diabetes-related complication — and the
+       difference between life and death often comes down to a single blood glucose
+       measurement taken too late."
+BAD:  "Diabetes is a serious disease that affects many people worldwide."
+```
+
+**Gap statement (Nature Comms-style):**
+```
+GOOD: "Despite three decades of microneedle research, no review has systematically
+       mapped the complete signal chain from needle tip to clinical decision — leaving
+       engineers to assemble knowledge from scattered sources across materials science,
+       electrochemistry, circuit design, and machine learning."
+BAD:  "Few reviews cover the complete microneedle sensing system."
+```
+
+**Contribution claim (specific, falsifiable):**
+```
+GOOD: "This review covers 437 studies from 2019–2026 across 6 sensing modalities,
+       providing the first quantitative decision framework for material × geometry ×
+       modality selection validated against 12 published system demonstrations."
+BAD:  "This comprehensive review covers the latest advances in microneedle sensing."
+```
+
+### Technical Section Patterns
+
+**Topic sentence (claim-first):**
+```
+GOOD: "Enzyme immobilization stability — not sensitivity — is the primary bottleneck
+       limiting continuous glucose monitor lifetime beyond 14 days [refs]."
+BAD:  "Enzyme immobilization is an important aspect of glucose sensor fabrication."
+```
+
+**Quantitative evidence integration:**
+```
+GOOD: "PEDOT:PSS-modified microneedle electrodes achieve glucose LODs of 0.3 ± 0.05 μM
+       (n = 5, DPV) [Zhang2024PEDOT], representing a 15× improvement over bare Au
+       microneedles (LOD = 4.5 μM) and approaching the clinical requirement for
+       interstitial fluid monitoring (LOD < 1 μM at physiological glucose concentrations)."
+BAD:  "PEDOT:PSS modification improves glucose detection sensitivity significantly."
+```
+
+**Contradiction handling (sophisticated):**
+```
+GOOD: "While Chen et al. reported 95% accuracy for their ML-calibrated CGM over 7 days
+       [Chen2024ML], Martinez-Duarte's group observed accuracy degradation to 78% after
+       day 5 under identical biofouling conditions [Martinez2024Biofouling] — suggesting
+       that calibration algorithms may compensate for, but not prevent, biofouling-induced
+       signal drift."
+BAD:  "Some studies show good accuracy while others show degradation over time."
+```
+
+### Transition Patterns
+
+**Section-to-section bridge:**
+```
+GOOD: "The material and geometry choices established in §2 directly determine the
+       electrochemical interface behavior analyzed next — for example, the high surface
+       area of porous microneedles (§2.2) amplifies the Faradaic current measured by
+       amperometric detection (§3.2)."
+BAD:  "In the next section, we discuss electrochemical sensing principles."
+```
+
+**Paragraph-to-paragraph bridge:**
+```
+GOOD: "Having established that enzyme stability limits sensor lifetime, the question
+       becomes: can we eliminate the enzyme entirely?"
+BAD:  "Another approach is label-free detection."
+```
+
+### Discussion/Conclusion Patterns
+
+**Implication-first (Nature-style conclusion):**
+```
+GOOD: "The convergence of flexible electronics, edge AI, and microneedle fabrication
+       now makes it feasible to build a wearable laboratory — but the remaining barrier
+       is not technical: it is the absence of standardized validation protocols that would
+       allow fair comparison between systems."
+BAD:  "In conclusion, microneedle-based wearable sensing has made significant progress."
+```
+
+---
+
+## Narrative Flow Engine (v5.0 — explicit transition management)
+
+**Problem this solves:** Even when individual sections are well-written, the paper can feel like "N adjacent topics stapled together." This engine ensures every section is structurally connected.
+
+### The Argument Arc
+
+Every review paper must have a single central argument that every section serves. Define this at Stage 4:
+
+```
+Central Argument: [One sentence that states the paper's thesis]
+  §1 establishes: [Why this argument matters]
+  §2 enables: [What physical foundation the argument requires]
+  §3 explains: [What functional principles the argument relies on]
+  §4 demonstrates: [What applications validate the argument]
+  §5 integrates: [How the argument manifests as a complete system]
+  §6 extends: [What intelligence the argument enables]
+  §7 confronts: [What challenges threaten the argument, and what opportunities advance it]
+  §8 distills: [The 3 actionable implications of the argument]
+```
+
+### Transition Matrix (mandatory at Stage 4)
+
+For every pair of adjacent sections, define the explicit logical connection:
+
+```
+§1→§2: "Introduction establishes the need for engineered interfaces → §2 provides
+        the material and geometry solutions to that need"
+§2→§3: "Materials define what IS possible at the interface → §3 explains HOW that
+        interface generates a measurable signal"
+§3→§4: "Sensing principles define detection capability → §4 shows WHAT we can
+        detect and WHY each target matters clinically"
+...
+```
+
+This matrix is written at Stage 4 and referenced during Stage 5 drafting. Every section opening must include a bridge sentence derived from this matrix.
+
+### Section Opening Protocol
+
+Every section (except §1) must open with ONE of these bridge patterns:
+
+1. **Problem→Solution bridge:** "The [problem/challenge] established in §[N-1] requires [solution/approach], which this section develops."
+2. **Foundation→Application bridge:** "The [principles/foundations] of §[N-1] enable [application/extension], which we examine here."
+3. **Question→Answer bridge:** "Having established [context] in §[N-1], we now address the central question: [question]?"
+4. **Scope→Detail bridge:** "§[N-1] provided the [broad framework]; this section zooms into [specific aspect]."
+
+### Section Closing Protocol
+
+Every section (except §8) must close with ONE of these bridge patterns:
+
+1. **Setup→Payoff:** "These [findings/principles] set the stage for §[N+1], where [what comes next]."
+2. **Open question:** "While [what this section established], the question of [open issue] remains — addressed in §[N+1]."
+3. **Synthesis point:** "Combining [this section's contribution] with [previous section's contribution] enables [synthesis insight], which §[N+1] develops."
+
+---
+
+## Argumentation Structure Templates (v5.0 — section-level argument architecture)
+
+**Problem this solves:** Models can write factually correct paragraphs that nonetheless fail to *argue* anything. A review paper must make and defend claims, not just catalog facts.
+
+### The AREI Pattern (Claim → Evidence → Reasoning → Implication)
+
+Every major subsection should contain at least one complete AREI cycle:
+
+```
+CLAIM: "Multiplexed detection is the key enabler for comprehensive health monitoring."
+         ↑ A specific, arguable statement (not a fact — an interpretation)
+
+EVIDENCE: "Three groups have demonstrated simultaneous 4–6 analyte detection on a
+            single MNA patch: Wang (glucose/lactate/uric acid/pH) [ref], Gao
+            (glucose/Na⁺/K⁺/temperature) [ref], and Li (cortisol/glucose/lactate) [ref]."
+         ↑ Specific data points from verified sources
+
+REASONING: "The common design principle across these systems is orthogonal transduction
+             — each analyte uses a different detection mechanism (amperometry, potentiometry,
+             EIS) on separate needle tips, minimizing cross-talk to <5% signal interference."
+         ↑ Explains WHY the evidence supports the claim
+
+IMPLICATION: "This suggests that the practical limit on multiplexing is not sensor
+              interference but rather the needle array density and readout circuit
+              complexity — a design constraint that shifts the bottleneck from chemistry
+              to engineering."
+         ↑ What this means for the field / for the reader's understanding
+```
+
+### Section Argument Map (produced at Stage 4, used at Stage 5)
+
+For each section, define before writing:
+
+```
+§3 — Electrochemical Sensing Principles & Modalities
+
+Central claim: "The choice of sensing modality is determined by the analyte's
+electrochemical signature, not by the sensor's material — and this distinction
+is the key design principle for MNA sensing systems."
+
+Subsidiary claims:
+  §3.2: Amperometry is optimal for redox-active small molecules (glucose, lactate)
+         because enzyme catalysis provides selectivity AND signal amplification.
+  §3.3: Voltammetry (DPV/SWV) enables multiplexing by exploiting distinct redox
+         potentials — but requires careful electrode surface engineering.
+  §3.4: EIS enables label-free macromolecule detection (proteins, DNA) because
+         binding events change interfacial impedance without requiring redox probes.
+  §3.5: Potentiometry is the only modality that measures ion activity directly —
+         critical for electrolyte monitoring where concentration ≠ activity.
+
+Evidence strength: §3.2 (⊕⊕⊕⊕), §3.3 (⊕⊕⊕⊕), §3.4 (⊕⊕⊕○), §3.5 (⊕⊕⊕⊕)
+Weak point attack: "EIS reproducibility in complex biofluids remains poor"
+Defense: cite the 3 best EIS reproducibility studies + acknowledge limitation
+```
+
+---
+
+## Multi-Scale Quality System (v5.0 — quality checks at every granularity)
+
+### Paragraph-Level Quality (checked after each paragraph in Stage 5 loop)
+
+```
+Paragraph Quality Checklist:
+[ ] Topic sentence: first sentence states a clear, arguable claim
+[ ] Evidence density: ≥1 citation per 3 sentences in technical paragraphs
+[ ] Coherence: every sentence relates to the topic sentence
+[ ] Transition: last sentence bridges to next paragraph
+[ ] No orphan facts: every number has a source, every claim has support
+[ ] Sentence variety: not all sentences start with "The" or "This"
+[ ] Active voice: ≥60% of sentences use active voice
+```
+
+### Section-Level Quality (5-dimension scoring, checked in Stage 5 loop)
+
+| Dimension | What It Measures | Scoring Criteria |
+|-----------|-----------------|------------------|
+| **Argument Strength** (20 pts) | Does this section prove its central claim? | 20: airtight argument with no logical gaps · 15: strong with minor gaps · 10: present but with significant gaps · 5: claim stated but not argued · 0: no identifiable claim |
+| **Evidence Quality** (20 pts) | Is every claim supported by verified data? | 20: all claims sourced, numbers verified, method types confirmed · 15: minor gaps · 10: some unsourced claims · 5: mostly assertion · 0: no evidence |
+| **Narrative Flow** (20 pts) | Does the section read as a coherent story? | 20: seamless flow, every paragraph builds on previous · 15: good flow with minor jumps · 10: readable but choppy · 5: disconnected paragraphs · 0: random facts |
+| **Pedagogical Value** (20 pts) | Can a newcomer learn from this section? | 20: concepts introduced progressively, analogies present, decision guides clear · 15: mostly accessible · 10: requires prior knowledge · 5: expert-only · 0: incomprehensible without domain expertise |
+| **Nature-Level Prose** (20 pts) | Does the writing meet top-journal standards? | 20: engaging opening, varied sentence structure, precise language, no filler · 15: professional quality · 10: competent but generic · 5: noticeable issues · 0: below journal standard |
+
+**Section passes if total ≥ 70/100. Below 70 → revise in the iterative loop.**
+
+### Paper-Level Quality (checked at Gate C)
+
+```
+Paper-Level Narrative Quality:
+[ ] Central argument: stated in §1, served by every section, restated in §8
+[ ] Argument arc: §1 sets up a problem that §2–6 progressively solve
+[ ] No orphan sections: every section justifies its presence in THIS paper
+[ ] Contribution clarity: the "first to cover X" claim is evident from structure alone
+[ ] Figure narrative: figures tell a story independent of text (visual argument)
+[ ] Opening impact: §1.1 hook makes the reader care within 3 sentences
+[ ] Closing impact: §8 ends with a forward-looking statement, not a summary
+[ ] Cross-section references: every section references ≥1 other section
+[ ] Consistent terminology: same concept = same term throughout (no synonym drift)
+[ ] Tone consistency: no jarring shifts between sections (suggests different authors)
+```
+
+---
+
+## Self-Correction Protocol (v5.0 — automatic error prevention)
+
+**Problem this solves:** Weaker models generate confident-sounding but potentially incorrect statements. This protocol adds automatic verification checkpoints.
+
+### Uncertainty Detection
+
+When the model encounters any of these patterns, it MUST pause and verify:
+
+| Trigger | Action |
+|---------|--------|
+| Writing a specific number (LOD, sensitivity, %) | Search for the source paper and verify the number exists |
+| Using a superlative ("first", "highest", "best") | Search for counter-examples before committing |
+| Citing a paper not in the corpus | Flag as [NEEDS_REF] — do not proceed without verification |
+| Making a causal claim ("because", "therefore", "leads to") | Check if the source paper actually makes this causal claim, or merely reports correlation |
+| Describing a method type for a cited paper | Cross-check against synthesis_notes.md method type field |
+
+### Self-Verification Prompt (appended to Tier 3/4 model prompts)
+
+```
+After writing each paragraph, answer these 5 questions BEFORE proceeding:
+1. Is every specific number in this paragraph traceable to a paper I've verified?
+2. Did I use any superlatives without a citation?
+3. Does every cited paper actually use the method I described?
+4. Is there a logical gap between any two consecutive sentences?
+5. Would a reviewer in this field challenge any claim I made?
+
+If ANY answer is "no" or "I'm not sure" — fix it now, not later.
+```
+
+---
+
 ## Pipeline Control Commands
 
 ### Starting the Pipeline
@@ -1856,13 +2415,13 @@ Gate B clears all `[N]`, `[X]`, and `[M]` before submission.
 | Daily new-paper monitoring | Manual periodic search | `start-my-day` (evil-read-arxiv) |
 | Paper deep reading | Claude extraction with Stage 3 protocol | `paper-analyze` |
 | Conference paper tracking | Manual search + `tavily-search` | `conf-papers` |
-| Section writing | 4-pass protocol embedded in Stage 5 | `academic-paper` (12-agent parallel) |
+| Section writing | Iterative loop (Think→Draft→Review→Revise) with 5-dimension scoring in Stage 5 | `academic-paper` (12-agent parallel) |
 | Style polish | Stage 5 style guidelines | `scientific-writing` + `paper-writing` |
 | Citation integrity check | Gate B audit protocol built-in | `paper-verification` (batch DOI check) |
 | Method-type consistency | Gate B Part 2 built-in | N/A (unique to SCI-writer) |
 | Figure mount audit | Stage 6.5 built-in Python scripts | N/A (unique to SCI-writer) |
 | Cross-reference audit | Stage 6.5 built-in regex scan | N/A (unique to SCI-writer) |
-| Peer review simulation | 6-reviewer panel built-in in Stage 7 | `academic-paper-reviewer` |
+| Peer review simulation | 8-reviewer panel (R1-R8) built-in in Stage 7 | `academic-paper-reviewer` |
 | Rebuttal engineering | Stage 8 rebuttal template built-in | `reviewer-defense` |
 | LaTeX compilation | Claude generates .tex with embedded template | `latex-document` + `latex-setup` |
 | Figures | Python/matplotlib generation (Stage 6) | `scientific-visualization` + `scientific-slides` |
@@ -2018,8 +2577,9 @@ If the user has a global CLAUDE.md, this skill respects those rules:
 
 ---
 
-*SCI-writer v4.2.0 — Designed for researchers who want to write papers, not manage tools.*
-*v4.2 major: Unified pedagogical-rigor framework · Technology history + measurement chain framework (§1.2–1.3) · Search Pattern D/E/F (foundational/Chinese/commercial) · Knowledge scaffolding sub-stage (4.5) · Pass 2.5 pedagogical enhancement · R7 new reader simulator · Decision flowcharts · Commercial benchmarks · Chinese research groups*
-*v4.1 patch: Pipeline state persistence · BibTeX key convention · Gate A exception path · Verification scripts · Table legend check · Elsevier URL fix · Stage 7 threshold fix*
-*v4.0 major: Stage 6.5 · R6 reviewer · Method-type consistency · Score escalation · [AUTO]/[USER] classification*
+*SCI-writer v5.0.0 — Designed for researchers who want to write papers, not manage tools.*
+*v5.0 major: Thinking-First Protocol · Iterative Writing Loop (Think→Draft→Review→Revise) · Narrative Flow Engine · Argumentation Templates (AREI) · Multi-Scale Quality System · Model Adaptation Layer (4 tiers) · Writing Quality Bank · R8 Writing Quality Auditor · Self-Correction Protocol · Nature-Level Writing Benchmark*
+*v4.2: Unified pedagogical-rigor framework · Technology history + measurement chain framework · Search Pattern D/E/F · Knowledge scaffolding · Pass 2.5 pedagogical enhancement · R7 new reader simulator · Decision flowcharts · Commercial benchmarks · Chinese research groups*
+*v4.1: Pipeline state persistence · BibTeX key convention · Gate A exception path · Verification scripts · Table legend check · Elsevier URL fix · Stage 7 threshold fix*
+*v4.0: Stage 6.5 · R6 reviewer · Method-type consistency · Score escalation · [AUTO]/[USER] classification*
 *SJTU Wang Lab | 张元杰 + 王侃 | Updated: 2026-05-29*
