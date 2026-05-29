@@ -202,13 +202,49 @@ PHASE IV — 交付
 
 ```
 SCI-writer/
-├── SKILL.md                         ← 主技能文件（复制到 ~/.claude/skills/）
+├── SKILL.md                         ← 主技能文件（2600+ 行，完整流水线逻辑）
+├── BOOTSTRAP.md                     ← 轻量引导文件（~80 行，按需加载 SKILL.md 对应节）
 ├── README.md                        ← 本文件
+├── install.ps1                      ← Windows 一键安装脚本
+├── install.sh                       ← Mac/Linux 一键安装脚本
+├── scripts/
+│   ├── verify_stage65.py            ← Stage 6.5 图表挂载 + 交叉引用验证
+│   ├── verify_gate_b.py             ← Gate B 引用完整性 + BibTeX 审计
+│   ├── verify_gate_c.py             ← Gate C 投稿就绪检查（摘要/正文/图表）
+│   └── download_templates.py        ← Elsevier LaTeX 模板下载
 └── templates/
-    ├── microneedle-sensing.yaml     ← 内置领域配置（v2.0）
-    ├── generic-review.yaml          ← 通用领域空白模板
+    ├── microneedle-sensing.yaml     ← 内置领域配置：微针/电化学传感（v2.0）
+    ├── generic-review.yaml          ← 通用领域空白模板（填空即用）
     └── cover-letter-template.md     ← Cover letter 模板
 ```
+
+**安装方式：**
+
+```powershell
+# Windows
+git clone https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill.git
+cd SCI-writer-skill
+.\install.ps1
+
+# Mac/Linux
+git clone https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill.git
+cd SCI-writer-skill
+chmod +x install.sh && ./install.sh
+```
+
+安装脚本会自动将所有文件复制到 `~/.claude/skills/SCI-writer/` 并验证完整性。
+
+**验证脚本使用：**
+
+```bash
+# 在论文项目目录下运行
+python ~/.claude/skills/SCI-writer/scripts/verify_stage65.py   # Stage 6.5 检查
+python ~/.claude/skills/SCI-writer/scripts/verify_gate_b.py    # Gate B 检查
+python ~/.claude/skills/SCI-writer/scripts/verify_gate_c.py    # Gate C 检查
+python ~/.claude/skills/SCI-writer/scripts/download_templates.py  # 下载 Elsevier 模板
+```
+
+所有脚本纯 Python 标准库，零依赖。
 
 ---
 
