@@ -1,208 +1,206 @@
 # SCI-writer
 
-> **全链路科学综述论文自动化编排系统**
-> *从文献检索到投稿级 LaTeX 包——全程自动化、全程审计、全程可复现。*
+> **Full-Chain Scientific Review Paper Orchestration System for Claude Code**
+> *From research gap to submission-ready LaTeX — a single skill that orchestrates the entire academic review paper pipeline with built-in anti-hallucination, citation integrity gates, and multi-persona peer review simulation.*
 
-[![版本](https://img.shields.io/badge/版本-4.1.0-blue)](SKILL.md)
-[![目标期刊](https://img.shields.io/badge/目标-Q1%20%2F%20CAS--TOP-red)](SKILL.md)
-[![质量门控](https://img.shields.io/badge/门控-A%20%2F%20B%20%2F%20C-green)](SKILL.md)
-[![反幻觉](https://img.shields.io/badge/反幻觉-内置-orange)](SKILL.md)
-[![流水线](https://img.shields.io/badge/流水线-11%20阶段-purple)](SKILL.md)
+[![Version](https://img.shields.io/badge/version-4.2.0-blue)](SKILL.md)
+[![Target](https://img.shields.io/badge/target-Q1%20%2F%20CAS--TOP-red)](SKILL.md)
+[![Gates](https://img.shields.io/badge/gates-A%20%2F%20B%20%2F%20C-green)](SKILL.md)
+[![Anti-Hallucination](https://img.shields.io/badge/anti--hallucination-builtin-orange)](SKILL.md)
+[![Pipeline](https://img.shields.io/badge/pipeline-11%20stages-purple)](SKILL.md)
 [![Affiliation](https://img.shields.io/badge/Affiliation-SJTU-blue)](https://www.sjtu.edu.cn)
 
 ---
 
-## 这是什么？
+## What This Does
 
-SCI-writer 是一个 **Claude Code Skill**，将科学综述论文的完整生命周期自动化编排——从领域差距分析、系统性文献检索、逐节撰写、同行评审模拟、LaTeX 编译，到投稿包组装，全程一条龙。
+SCI-writer is a **Claude Code Skill** that turns your research idea into a submission-ready review paper through a structured 11-stage pipeline with 3 mandatory quality gates.
 
-本 skill 在**上海交通大学自动化与感知学院 王侃课题组**开发并经实战验证，首发论文：
+**Built-in specialization:** Deep configuration for wearable electrochemical sensing / microneedle array research (Biosensors and Bioelectronics, ACS Nano, etc.)
 
-> *"Wearable Electrochemical Sensing Systems Based on Microneedle Arrays: A Full-Chain Review from Sensor Fabrication to Intelligent Embedded Terminals"*
-> 目标期刊：*Biosensors and Bioelectronics*（中科院一区 TOP）
-
-skill **完全自包含**——不依赖任何伴侣 skill 即可运行完整流水线。若安装了加速器 skill（deep-research、academic-paper、paper-verification 等），会被自动检测并调用，缩短运行时间。
+**Key innovation in v4.2:** The **measurement instrument chain** framework — treating the review paper as a unified cognitive model that simultaneously serves newcomers (educational) and domain experts (professional).
 
 ---
 
-## 核心能力
+## What's New in v4.2
 
-| 能力 | 说明 |
-|------|------|
-| **11 阶段流水线** | 基础 → 建构 → 精炼 → 交付，含 3 个强制质量门控 |
-| **3 个质量门控** | Gate A（语料库完整性）· Gate B（引文完整性 + 方法类型一致性）· Gate C（投稿就绪） |
-| **反幻觉协议** | 四规则体系：引文溯源、数值可追溯、最高级必引用、方法类型一致 · `[V]/[U]/[N]/[X]/[M]` 标签分类 |
-| **6 角色同行评审模拟** | 领域专家 · 邻域专家 · 方法学专家 · 临床/转化专家 · 魔鬼代言人 · 格式/集成审核员（R6） |
-| **图片挂载核查（Stage 6.5）** | 用 Python 脚本自动检测注释状态的 `\includegraphics`、无 `\ref{}` 的孤儿图片、表格图例一致性 |
-| **流水线状态持久化** | 每阶段完成后写入 `sci_writer_state.md`——跨会话/跨天 context compaction 后可用 `/sciw resume` 恢复 |
-| **领域配置系统** | 内置可穿戴 MNA 电化学传感领域 YAML 配置；可适配任意研究领域 |
-| **交付任务分类** | `[AUTO]` 项由 Claude 主动完成，`[USER]` 项仅需用户填写私人信息（电话/基金号） |
-| **三级引文核查** | Tier 1（全量格式）· Tier 2（[N]/[U] 标记）· Tier 3（高风险：数值 + 最高级） |
-| **分轮评分升级** | Stage 7 最多三轮：R1 均分 ≥78 → R2 均分 ≥80（P0 修订后）→ R3 均分 ≥82（P1 修订后） |
+| Feature | Description |
+|---------|-------------|
+| **Unified Pedagogical-Rigor Framework** | Teaching and peer-review quality are no longer separate goals; the framework structure serves both simultaneously |
+| **Measurement Chain Framework (§1.3)** | A single cognitive model (target → frontend → signal chain → intelligence → output) organizes the entire paper |
+| **Technology History Timeline (§1.2)** | Temporal context for newcomers; milestone-based field evolution |
+| **Search Pattern D/E/F** | Foundational & tutorial papers, Chinese literature (CNKI/Wanfang), commercial & industrial papers |
+| **Knowledge Scaffolding (Sub-stage 4.5)** | Prerequisite maps, concept introduction protocol, decision flowcharts, benchmark tables |
+| **Pedagogical Enhancement (Pass 2.5)** | Concept check, analogy check, decision guide check, quantitative table check |
+| **R7 New Reader Simulator** | 7th reviewer: simulates a first-year graduate student; tests understandability without sacrificing rigor |
+| **Decision Flowcharts** | Material × geometry selection guide and sensing modality selection matrix |
+| **Commercial Benchmarks** | Dexcom G7, FreeStyle Libre 3, Medtronic Guardian 4, Senseonics Eversense 365 |
+| **Chinese Research Groups** | 10+ CN research teams for balanced geographic coverage |
 
 ---
 
-## 11 阶段流水线
+## Quick Start (3 Steps)
 
-```
-┌─────────────────────────────────────────────────────┐
-│                  第一阶段组 — 基础                    │
-├─────────────────────────────────────────────────────┤
-│  Stage 1   │ 领域调研与差距定位                       │
-│  Stage 2   │ 文献采集（PRISMA 系统性检索）             │
-│  ▓▓▓▓▓▓ GATE A：语料库完整性门控 ▓▓▓▓▓▓▓▓           │
-├─────────────────────────────────────────────────────┤
-│                  第二阶段组 — 建构                    │
-├─────────────────────────────────────────────────────┤
-│  Stage 3   │ 深度综合与知识提炼                       │
-│  Stage 4   │ 叙事架构与大纲设计                       │
-│  Stage 5   │ 逐节撰写（四遍质量协议）                  │
-│  Stage 6   │ 图表与视觉叙事                           │
-│  Stage 6.5 │ 图片挂载与交叉引用核查 ★ 新增            │
-│  ▓▓▓▓▓▓ GATE B：引文完整性 + 方法类型核查 ▓▓▓▓▓▓    │
-├─────────────────────────────────────────────────────┤
-│                  第三阶段组 — 精炼                    │
-├─────────────────────────────────────────────────────┤
-│  Stage 7   │ 六角色同行评审模拟                       │
-│  Stage 8   │ 修订与反驳工程                           │
-│  Stage 9   │ 期刊格式化与 LaTeX 编译                  │
-│  ▓▓▓▓▓▓ GATE C：投稿就绪检查 ▓▓▓▓▓▓▓▓▓▓▓▓          │
-├─────────────────────────────────────────────────────┤
-│                  第四阶段组 — 交付                    │
-├─────────────────────────────────────────────────────┤
-│  Stage 10  │ 投稿包组装                              │
-└─────────────────────────────────────────────────────┘
-★ Stage 6.5 是 v4.0 新增阶段，专门消灭最高频的 LaTeX 空白框故障
+### Step 1 — Install
+
+**Windows:**
+```powershell
+./install.ps1
 ```
 
----
-
-## 快速开始
-
-### 安装
-
+**Mac/Linux:**
 ```bash
-# 克隆到 Claude Code skills 目录（Mac/Linux）
-git clone https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill.git ~/.claude/skills/SCI-writer
-
-# Windows
-git clone https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill.git "C:\Users\<你的用户名>\.claude\skills\SCI-writer"
+chmod +x install.sh && ./install.sh
 ```
 
-### 在 Claude Code 中调用
+**Manual:**
+```bash
+cp -r skills/SCI-writer ~/.claude/skills/
+```
+
+### Step 2 — Start the Pipeline
 
 ```
-# 从零开始一篇新综述
-/SCI-writer
+/sciw load microneedle      ← Built-in microneedle/electrochemical sensing config
+/sciw init                   ← Interactive configuration for any domain
+```
 
-# 加载内置微针/可穿戴传感领域配置，直接开跑
-/sciw load microneedle
+### Step 3 — Run
 
-# 全自动模式（每个 Gate 暂停等待确认）
-/sciw auto
-
-# 恢复中断的流水线（读取 sci_writer_state.md）
-/sciw resume
-
-# 跳转到指定阶段
-/sciw stage 7
-
-# 仅运行图片挂载核查
-/sciw mount-check
-
-# 仅运行 Gate B 引文审计
-/sciw gate b
-
-# 运行所有 Gate C 自动化验证脚本
-/sciw verify all
+```
+/sciw auto                   ← Full autonomous mode (pauses at each Gate)
+/sciw stage 2                ← Jump to specific stage
+/sciw resume                 ← Continue from last checkpoint
+/sciw status                 ← Check progress
 ```
 
 ---
 
-## 三个质量门控详解
+## The 11-Stage Pipeline
 
-### Gate A — 语料库完整性
-
-确保在撰写前，文献语料库足够大、足够多样、足够新。
-
-- 总论文数 ≥150 篇（领域文献稀少时有例外路径：≥80 篇 + 补偿控制措施）
-- 每个主要章节 ≥20 篇
-- 2023–2026 年论文占比 ≥40%
-- 至少 5 个 DOI 人工验证
-- 每篇论文记录检测方法类型（供 Gate B 方法类型核查使用）
-- 所有 BibTeX key 符合 `AuthorYYYYKeyword` 命名规范
-
-### Gate B — 引文完整性 + 方法类型核查
-
-反幻觉防火墙，三级核查体系：
-
-| 级别 | 范围 | 核查内容 |
-|------|------|---------|
-| **Tier 1** | 所有引用 | BibTeX key 格式 + DOI 字段存在性 |
-| **Tier 2** | `[N]` 和 `[U]` 标记的引用 | 标题 + 作者 + 年份 + 期刊 逐一确认 |
-| **Tier 3** | 高风险（含具体数值、"first"、2025–2026 年、格式异常 DOI） | 具体指标在原文中的存在性确认 |
-
-**方法类型一致性核查（SCI-writer 独有）**：荧光法论文被引用在 EIS 段落 = 自动标记 `[METHOD_X]`。被引论文的检测模态必须与引用语句所描述的方法一致。
-
-### Gate C — 投稿就绪
-
-终检清单：零图片挂载故障、零孤儿图片、R2 均分 ≥80/100、正文字数 8,000–15,000、摘要 ≤300 字、所有亮点 ≤85 字符。全部通过 Python 脚本自动验证。
-
----
-
-## 反幻觉协议
-
-四条规则，始终激活，不可关闭：
-
-**规则 1 — 引文溯源规则**
-每个关于具体研究的声明必须有可验证的来源。没有来源 = `[NEEDS_REF]`，不允许自造引用。
-
-**规则 2 — 数值规则**
-每个量化数值（LOD、灵敏度、MARD、p值）必须可追溯到被验证论文的具体表格或图。
-
-**规则 3 — 最高级规则**
-"first"、"highest"、"only"、"unprecedented" 等词必须附引用。没有引用则改为中性表述："among the reported approaches..."
-
-**规则 4 — 方法类型规则**
-被引论文的检测方法必须与引用语句所声明的方法一致。光学法 ≠ 电化学法。
-
-**验证标签分类：**
 ```
-[V]  已验证 — DOI 已确认，方法类型已确认
-[U]  未独立验证 — 用户提供，未自主核查
-[N]  待核查 — 在语料库中但尚未审计
-[X]  核查失败 — 未找到；从草稿中删除
-[M]  方法类型不匹配 — 论文存在但方法类型与引用语境冲突
+PHASE I  — FOUNDATION
+  Stage 1   │ Domain Intelligence & Gap Mapping (+ history + framework)
+  Stage 2   │ Literature Acquisition (Corpus Building, 8 search patterns)
+  ▓▓▓▓▓▓▓▓▓ GATE A: Corpus Completeness ▓▓▓▓▓▓▓▓▓
+
+PHASE II — CONSTRUCTION
+  Stage 3   │ Deep Synthesis & Knowledge Extraction
+  Stage 4   │ Narrative Architecture & Outline Design (+ Sub-stage 4.5 Knowledge Scaffolding)
+  Stage 5   │ Section-by-Section Drafting (+ Pass 2.5 Pedagogical Enhancement)
+  Stage 6   │ Figures, Tables & Visual Narrative
+  Stage 6.5 │ Figure Mount & Cross-Reference Verification
+  ▓▓▓▓▓▓▓▓▓ GATE B: Citation Integrity + Method-Type Audit ▓▓▓▓▓▓▓▓▓
+
+PHASE III — REFINEMENT
+  Stage 7   │ Multi-Persona Peer Review Simulation (7 reviewers: R1-R7)
+  Stage 8   │ Revision & Rebuttal Engineering
+  Stage 9   │ Journal Formatting & LaTeX Compilation
+  ▓▓▓▓▓▓▓▓▓ GATE C: Submission Readiness Check ▓▓▓▓▓▓▓▓▓
+
+PHASE IV — DELIVERY
+  Stage 10  │ Submission Package Assembly
 ```
 
 ---
 
-## 6 位审稿人面板（Stage 7）
+## Features
 
-| 审稿人 | 审查重点 | 主要攻击方向 |
-|--------|---------|------------|
-| **R1** 领域专家 | 技术准确性、深度、覆盖完整性 | 遗漏关键文献；性能基准与原始论文不符 |
-| **R2** 邻域专家 | 跨学科背景、与邻近领域的定位 | "邻域早就做了"；新颖性声明过度 |
-| **R3** 方法学专家 | 系统性覆盖、综述本身的方法论 | 无 PRISMA 合规；纳入标准不清晰 |
-| **R4** 临床/转化专家 | 临床相关性、监管路径、体内证据质量 | 体外结果被引作临床证据；无与商业金标准的对比 |
-| **R5** 魔鬼代言人 | 核心论题连贯性 | "这是一篇统一综述还是把几个主题凑在一起？" |
-| **R6** 格式/集成审核员 ★ | LaTeX 质量、图片挂载、期刊合规 | 注释状态的 `\includegraphics`；孤儿图片；亮点超 85 字符 |
+### Anti-Hallucination Gates
+Three mandatory stops that cannot be skipped:
+- **Gate A** — Corpus completeness (≥150 papers, ≥20/section, ≥40% recent)
+- **Gate B** — Citation integrity audit + method-type consistency check
+- **Gate C** — Submission readiness (reviewer score ≥80/100, R7 ≥70, zero unresolved citations)
 
-★ R6 在 v4.0 中新增，因为实战发现格式类故障持续逃过前 5 位审稿人的检查。
+### 7-Reviewer Peer Review Simulation
+| Reviewer | Focus |
+|----------|-------|
+| R1 Domain Expert | Technical accuracy, depth, completeness |
+| R2 Neighboring Field Expert | Interdisciplinary context, positioning |
+| R3 Methods/Rigor Expert | Systematic coverage, methodology |
+| R4 Clinical/Translational Expert | Clinical relevance, regulatory pathways |
+| R5 Devil's Advocate | Central thesis challenge |
+| R6 Format/Integration Auditor | LaTeX formatting, cross-references |
+| R7 New Reader Simulator | Can a first-year grad student understand this? |
 
-分轮评分升级：R1 均分 ≥78 → R2 均分 ≥80 → R3 均分 ≥82
+### Pipeline State Persistence
+`sci_writer_state.md` written after every stage — pipeline survives context compaction and multi-day runs. Use `/sciw resume` to continue.
+
+### Domain Configuration System
+Inject domain-specific intelligence via YAML config. Built-in: wearable electrochemical sensing / microneedle arrays.
 
 ---
 
-## 作者
+## Command Reference
 
-| | 姓名 | 单位 | 联系方式 |
-|---|---|---|---|
-| **开发者** | 张元杰 | 上海交通大学 自动化与传感科学与工程学院 硕士生 | [ORCID](https://orcid.org/0009-0001-0705-7793) |
-| **指导教师** | 王侃 | 上海交通大学 自动化与传感科学与工程学院 副教授 | wangkan@sjtu.edu.cn |
+```
+/sciw init                  Configure title, journal, domain
+/sciw load microneedle      Load built-in microneedle config
+/sciw start                 Begin pipeline from Stage 1
+/sciw auto                  Full autonomous run (Gate pauses)
+/sciw stage [1-10]          Jump to specific stage
+/sciw stage 6.5             Figure mount + cross-reference audit
+/sciw gate [a/b/c]          Run quality gate only
+/sciw search [query]        Literature search mode
+/sciw write [section]       Write specific section
+/sciw review                Run peer review simulation
+/sciw verify                Citation audit
+/sciw resume                Continue from last checkpoint
+/sciw status                Show pipeline progress
+/sciw export                Generate submission package
+```
 
 ---
 
-## 许可证
+## File Structure
 
-本 skill 为上海交通大学王侃课题组内部工具。使用 Claude Code 作为底层 AI 框架。
+```
+SCI-writer/
+├── SKILL.md                           ← Main skill (copy to ~/.claude/skills/)
+├── README.md                          ← This file
+├── templates/
+│   ├── microneedle-sensing.yaml       ← Built-in domain config (v2.0)
+│   ├── generic-review.yaml            ← Blank template for other domains
+│   └── cover-letter-template.md       ← Cover letter template
+├── docs/
+│   ├── anti-hallucination.md
+│   └── companion-skills.md
+├── install.ps1                        ← Windows installer
+└── install.sh                         ← Mac/Linux installer
+```
+
+---
+
+## Companion Skills (Optional)
+
+These skills enhance capabilities but are NOT required:
+
+| Skill | Enhances |
+|-------|----------|
+| `academic-paper` | Stage 5 writing (12-agent parallel) |
+| `academic-paper-reviewer` | Stage 7 review simulation |
+| `deep-research` | Stage 2 systematic search |
+| `paper-verification` | Gate B citation check |
+| `arxiv-search` | Stage 2 arXiv search |
+| `scientific-visualization` | Stage 6 figure generation |
+| `latex-document` | Stage 9 compilation |
+
+---
+
+## Citation
+
+If you use SCI-writer in your research, please cite:
+
+```bibtex
+@software{SCI-writer2026,
+  author = {Zhang, Yuanjie and Wang, Kan},
+  title  = {SCI-writer: Full-Chain Scientific Review Paper Orchestration System},
+  year   = {2026},
+  url    = {https://github.com/ZhangYuanJie-SJTU/SCI-writer-skill}
+}
+```
+
+---
+
+*SCI-writer v4.2.0 — Designed for researchers who want to write papers, not manage tools.*
+*SJTU Wang Lab | Zhang Yuanjie + Wang Kan | Updated: 2026-05-29*

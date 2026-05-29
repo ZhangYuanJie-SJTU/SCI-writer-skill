@@ -1,0 +1,384 @@
+# SCI-writer Domain Configuration v2.0
+# Wearable Electrochemical Sensing / Microneedle Arrays
+# SJTU Wang Lab — Biosensors and Bioelectronics target
+# Framework: Measurement Instrument Chain (教学性-专业性统一)
+
+paper:
+  title: "Microneedle-Based Wearable Electrochemical Sensing: A Full-Chain Engineering Review from Material Design to Intelligent Terminals"
+  short_title: "Microneedle Electrochemical Sensing: Full-Chain Review"
+  journal: "Biosensors and Bioelectronics"
+  impact_factor: 12.6
+  type: "review"
+  word_target: 16000
+  reference_target: 200
+  figures_target: 10
+  tables_target: 5
+  issn: "0956-5663"
+  publisher: "Elsevier"
+
+domain:
+  field: "wearable electrochemical biosensing via microneedle arrays"
+  unifying_framework: "measurement_instrument_chain"
+  framework_description: >
+    The microneedle sensing system is modeled as a complete measurement instrument:
+    Target analyte → Needle-skin interface (sampling) → Electrochemical transduction
+    → Analog front-end (signal conditioning) → Digital processing (MCU/AI) → Clinical output.
+    Each section of the paper maps to one stage of this chain.
+    This framework makes the paper simultaneously educational (clear cognitive structure)
+    and professional (design space analysis, quantitative benchmarks, system-level thinking).
+  keywords:
+    primary:
+      - "microneedle array"
+      - "electrochemical sensing"
+      - "wearable biosensor"
+      - "minimally invasive monitoring"
+      - "continuous health monitoring"
+    secondary:
+      - "interstitial fluid sampling"
+      - "transdermal biosensor"
+      - "sweat analysis"
+      - "embedded terminal"
+      - "IoT health monitoring"
+      - "in vivo electrochemical"
+      - "point-of-care diagnostics"
+
+  key_researchers:
+    # International groups
+    - "Joseph Wang (UCSD) — flexible wearable electrochemical patches, glucose/lactate"
+    - "Ali Javey (UC Berkeley) — multiplexed wearable sensor arrays, FPCB integration"
+    - "Wei Gao (Caltech) — fully integrated wearable systems, machine learning integration"
+    - "Hyunjae Lee (POSTECH) — painless hollow microneedle glucose, clinical validation"
+    - "Rodrigo Martinez-Duarte (Clemson) — carbon microneedle arrays"
+    - "Martin Pumera (VSB-TUO) — 3D printed microneedle electrodes"
+    - "Mark Prausnitz (Georgia Tech) — dissolvable microneedle delivery/sensing"
+    - "Devansh Bhansali (FIU) — microneedle cortisol, ISF sampling"
+    - "Liangbing Hu (UMD) — flexible electronics, nanostructured electrodes"
+    - "Nae-Eung Lee (Sungkyunkwan) — stretchable electronics, skin-interfaced"
+    # Chinese groups (essential for balanced coverage)
+    - "Lingqian Chang (PKU) — microneedle transcutaneous biosensing"
+    - "Zhuo Li (HUST) — flexible electronics + microneedle integration"
+    - "Yong Zhu (PKU) — 3D printed microneedle arrays"
+    - "Fei Liu (CAS Suzhou Institute) — microneedle continuous glucose monitoring"
+    - "Jianfeng Ping (ZJU) — wearable electrochemical sensors"
+    - "Zhong Lin Wang (TJU/BIT) — nanogenerator + self-powered sensing"
+    - "Yuehe Lin (WSU) — nanomaterial-enhanced electrochemical biosensors"
+
+  detection_method_taxonomy:
+    electrochemical:
+      - amperometry        # glucose/lactate GOx/LOx, Cottrell equation
+      - DPV                # uric acid on carbon, peak current analysis
+      - SWV                # multiplexed detection, faster than DPV
+      - EIS                # aptasensor, immunosensor, Randles circuit
+      - potentiometry ISE  # Na+, K+, pH via IrOx/monensin/valinomycin, Nernst equation
+      - FSCV               # dopamine on carbon-fiber MNA, fast scan
+    optical:
+      - fluorescence       # HCR amplification, quantum dot
+      - SERS               # surface-enhanced Raman on Au-MNA
+      - colorimetric       # paper-based, smartphone readout
+    mechanical:
+      - piezoresistive     # pressure/strain on microneedle tip
+      - piezoelectric      # dynamic pressure measurement
+    thermal:
+      - thermistor         # temperature at needle tip
+      - IR                 # non-contact thermal mapping
+
+  performance_metrics:
+    - {name: "Glucose LOD", unit: "μM", good_threshold: "< 1", excellent: "< 0.1"}
+    - {name: "Glucose sensitivity", unit: "μA mM⁻¹ cm⁻²", good_threshold: "> 10", excellent: "> 50"}
+    - {name: "Glucose linear range", unit: "mM", good_threshold: "0.1–20", clinical: "2.8–22.2"}
+    - {name: "Lactate LOD", unit: "μM", good_threshold: "< 10", excellent: "< 5"}
+    - {name: "Lactate linear range", unit: "mM", good_threshold: "0.5–20"}
+    - {name: "Uric acid LOD (DPV)", unit: "μM", good_threshold: "< 1"}
+    - {name: "Cortisol LOD (EIS)", unit: "ng/mL", good_threshold: "< 1"}
+    - {name: "Na⁺ slope", unit: "mV/decade", good_threshold: "55–62 (Nernstian 59.2)"}
+    - {name: "K⁺ slope", unit: "mV/decade", good_threshold: "55–62"}
+    - {name: "Selectivity coefficient (ISE)", unit: "log k", good_threshold: "< -2"}
+    - {name: "Mechanical fracture force", unit: "N/needle", good_threshold: "> 0.1"}
+    - {name: "Skin insertion depth", unit: "μm", good_threshold: "200–800 (epidermis)"}
+    - {name: "CGM MARD", unit: "%", good_threshold: "< 10", commercial: "8.2–9.7"}
+    - {name: "Wireless range (BLE)", unit: "m", good_threshold: "> 5"}
+    - {name: "Power consumption", unit: "mW", good_threshold: "< 10 for continuous"}
+
+  commercial_benchmarks:
+    - {product: "Dexcom G7", MARD: "8.2%", wear_time: "10d", analyte: "glucose", sensor_type: "enzyme electrode", regulatory: "FDA 510(k)"}
+    - {product: "Abbott FreeStyle Libre 3", MARD: "7.9%", wear_time: "14d", analyte: "glucose", sensor_type: "enzyme electrode", regulatory: "FDA 510(k) + CE"}
+    - {product: "Medtronic Guardian 4", MARD: "8.7%", wear_time: "7d", analyte: "glucose", sensor_type: "enzyme electrode", regulatory: "FDA 510(k)"}
+    - {product: "Senseonics Eversense 365", MARD: "8.5%", wear_time: "365d", analyte: "glucose", sensor_type: "fluorescence", regulatory: "FDA PMA"}
+
+  technology_milestones:
+    - {year: 2000, event: "Prausnitz: microneedle transdermal drug delivery concept", significance: "founding"}
+    - {year: 2005, event: "First electrochemical microneedle glucose sensor", significance: "proof_of_concept"}
+    - {year: 2010, event: "Hollow microneedle + ISF sampling demonstrated", significance: "enabling"}
+    - {year: 2015, event: "Wearable electrochemical patch era (Wang, Javey)", significance: "acceleration"}
+    - {year: 2018, event: "FreeStyle Libre commercial CGM success", significance: "commercial"}
+    - {year: 2020, event: "Multiplexed microneedle arrays + wireless", significance: "integration"}
+    - {year: 2022, event: "Edge AI + closed-loop insulin delivery concept", significance: "intelligence"}
+    - {year: 2024, event: "7-day continuous monitoring + ML calibration", significance: "maturation"}
+    - {year: 2026, event: "Full-chain integration: needle → AFE → MCU → cloud → AI", significance: "current"}
+
+  search_clusters:
+    - name: "Cluster A: Microneedle Fabrication & Materials"
+      queries:
+        - "microneedle array electrochemical sensor fabrication silicon"
+        - "hollow microneedle electrodeposition PEDOT glucose amperometric"
+        - "polymer PDMS SU-8 microneedle electrochemical sensor"
+        - "metal microneedle array gold platinum electrode"
+        - "3D printed microneedle electrode biosensor"
+        - "hydrogel microneedle swelling interstitial fluid"
+        - "carbon nanotube graphene microneedle electrode"
+        - "microneedle tip modification enzyme immobilization"
+
+    - name: "Cluster B: Electrochemical Sensing Modalities"
+      queries:
+        - "microneedle amperometric glucose oxidase continuous monitoring"
+        - "wearable differential pulse voltammetry DPV microneedle"
+        - "square wave voltammetry SWV uric acid wearable"
+        - "impedance spectroscopy EIS microneedle aptasensor cortisol"
+        - "ion selective electrode potentiometric wearable skin"
+        - "FSCV fast scan cyclic voltammetry dopamine wearable"
+        - "multiplexed electrochemical array wearable simultaneous"
+
+    - name: "Cluster C: Wearable System Integration"
+      queries:
+        - "flexible substrate wearable electrochemical patch skin"
+        - "wireless Bluetooth NFC electrochemical sensor wearable"
+        - "analog front end potentiostat wearable biosensor ASIC"
+        - "power management wearable biosensor energy harvesting"
+        - "stretchable electronics biosensor skin-interfaced"
+        - "textile fiber wearable electrochemical sensor integration"
+
+    - name: "Cluster D: Embedded Intelligence & Terminals"
+      queries:
+        - "edge computing machine learning wearable biosensor calibration"
+        - "embedded MCU microcontroller electrochemical sensing IoT"
+        - "closed loop insulin delivery glucose sensor wearable"
+        - "smartphone interface electrochemical wearable health data"
+        - "signal processing algorithm drift correction wearable sensor"
+        - "cloud platform wearable continuous health monitoring"
+
+    - name: "Cluster E: Clinical & In Vivo Validation"
+      queries:
+        - "microneedle in vivo glucose monitoring human clinical"
+        - "wearable lactate continuous monitoring exercise validation"
+        - "transdermal cortisol monitoring human study"
+        - "interstitial fluid microneedle glucose accuracy Clarke"
+        - "wearable uric acid gout monitoring clinical"
+        - "microneedle drug monitoring pharmacokinetics in vivo"
+
+    - name: "Cluster F: Foundational & Tutorial"  # NEW in v2.0
+      queries:
+        - "microneedle review tutorial introduction"
+        - "electrochemical biosensor fundamentals review"
+        - "wearable sensor design principles review"
+        - "microfabrication microneedle protocol method"
+        - "interstitial fluid sampling fundamentals"
+        - "potentiostat circuit design biosensor tutorial"
+      purpose: "Papers that explain core concepts accessibly; cited in §1 and §3 introductory paragraphs"
+
+    - name: "Cluster G: Chinese Literature"  # NEW in v2.0
+      queries:
+        - "microneedle electrochemical sensor review"
+        - "microneedle continuous monitoring fabrication"
+        - "wearable biosensor microneedle signal processing"
+        - "micro needle array interstitial fluid"
+      databases: ["CNKI", "Wanfang", "PubMed (Chinese affiliation filter)"]
+      purpose: "Ensure Chinese research groups are represented; bridge CN/EN literature"
+
+    - name: "Cluster H: Commercial & Industrial"  # NEW in v2.0
+      queries:
+        - "CGM commercial Dexcom Abbott Medtronic comparison MARD"
+        - "microneedle patent landscape commercialization"
+        - "microneedle FDA 510k CE marking regulatory pathway"
+        - "wearable biosensor manufacturing scale-up cost"
+      purpose: "Bridge lab-to-market gap; cite in §7 commercialization section"
+
+  journals_to_monitor:
+    - "Biosensors and Bioelectronics"
+    - "ACS Nano"
+    - "Advanced Materials"
+    - "Advanced Functional Materials"
+    - "Analytical Chemistry"
+    - "Lab on a Chip"
+    - "Nature Electronics"
+    - "npj Digital Medicine"
+    - "Theranostics"
+    - "Small"
+    - "Nano Energy"
+    - "ACS Applied Materials & Interfaces"
+    - "Chemical Reviews"
+    - "Chemical Society Reviews"
+
+  # Pedagogical scaffolding specifications (for Stage 4 Sub-stage 4.5)
+  decision_flowcharts:
+    - section: "§2.5"
+      title: "Microneedle Material × Geometry Selection Guide"
+      inputs: ["target analyte", "wear duration", "manufacturing capability", "cost constraint"]
+      outputs: ["recommended material", "recommended geometry", "fabrication method"]
+      format: "flowchart figure"
+
+    - section: "§3.6"
+      title: "Sensing Modality Selection Matrix"
+      inputs: ["analyte type", "required LOD", "selectivity needs", "power budget", "response time"]
+      outputs: ["recommended modality", "expected performance range"]
+      format: "decision table + radar chart"
+
+  quantitative_benchmark_tables:
+    - section: "§3 end"
+      title: "Electrochemical Sensing Modality Comparison"
+      columns: ["modality", "analyte_example", "LOD", "sensitivity", "linear_range", "response_time", "stability", "power"]
+
+    - section: "§5 end"
+      title: "System Integration Approaches Comparison"
+      columns: ["system", "substrate", "wireless", "power_source", "MCU", "wear_time", "demonstrated_analytes"]
+
+  open_questions:  # For §7.5 — both teaching tool and research guide
+    - {id: 1, question: "ISF-blood glucose lag: exact magnitude under varying conditions?", priority: "high", difficulty: "clinical_validation"}
+    - {id: 2, question: "Long-term biofouling mitigation beyond 14 days?", priority: "high", difficulty: "materials_science"}
+    - {id: 3, question: "Multi-analyte simultaneous detection with cross-talk minimization?", priority: "high", difficulty: "sensor_design"}
+    - {id: 4, question: "Personalized ML calibration: generalizable across patients?", priority: "medium", difficulty: "data_science"}
+    - {id: 5, question: "Closed-loop therapy regulatory pathway for autonomous dosing?", priority: "high", difficulty: "regulatory"}
+    - {id: 6, question: "Manufacturing cost reduction to <$1/sensor for mass adoption?", priority: "medium", difficulty: "manufacturing"}
+    - {id: 7, question: "ISF sampling rate: what is the physiological limit?", priority: "medium", difficulty: "physiology"}
+    - {id: 8, question: "Power harvesting sufficient for continuous EIS measurement?", priority: "medium", difficulty: "circuit_design"}
+    - {id: 9, question: "Standardized ISF extraction protocol for reproducibility?", priority: "high", difficulty: "methodology"}
+    - {id: 10, question: "Edge AI inference accuracy vs. cloud-based processing?", priority: "medium", difficulty: "embedded_systems"}
+    - {id: 11, question: "Microneedle pain perception: quantitative psychophysical data?", priority: "low", difficulty: "clinical"}
+    - {id: 12, question: "Sterilization methods compatible with enzyme-functionalized needles?", priority: "medium", difficulty: "manufacturing"}
+    - {id: 13, question: "NMPA regulatory pathway for microneedle CGM in China?", priority: "high", difficulty: "regulatory"}
+    - {id: 14, question: "Sweat vs ISF: which biofluid is more reliable for continuous monitoring?", priority: "medium", difficulty: "physiology"}
+    - {id: 15, question: "Integration with smartwatch/fitness tracker form factor?", priority: "medium", difficulty: "industrial_design"}
+
+review:
+  existing_reviews_to_beat:
+    - "Sekar 2023 Adv Mater — fabrication focus, minimal embedded systems/AI"
+    - "Yang 2022 Chem Soc Rev — electrochemistry fundamentals, not wearable integration"
+    - "Teymourian 2021 ACS Nano — strong wearable patch coverage, weak on microneedle specifics"
+    - "Zhao 2023 Biosens Bioelectron — microneedle diabetes focus, narrow scope"
+    - "Li 2024 Adv Sci — wearable biosensor review, limited microneedle+terminal integration"
+    - "Kim 2023 ACS Nano — microneedle drug delivery/sensing dual function"
+    - "Zhang 2024 Chem Eng J — 3D printed microneedle, no system integration"
+
+  unique_contribution: >
+    This is the FIRST comprehensive review to adopt a measurement instrument chain
+    framework, treating wearable microneedle-based electrochemical sensing as a
+    complete engineering system — from material design and electrochemical transduction
+    through signal conditioning circuits to embedded intelligent terminals — and
+    providing systematic decision guides (material × geometry × sensing modality)
+    that enable readers to independently design and evaluate microneedle sensing systems.
+
+outline:
+  sections:
+    - number: "1"
+      title: "Introduction"
+      word_target: 2500
+      subsections:
+        - "1.1 Clinical motivation: from finger-prick to continuous monitoring"
+        - "1.2 Technology history: key milestones 2000→2026 (timeline figure)"
+        - "1.3 Measurement instrument chain framework (★ central cognitive model)"
+        - "1.4 Scope, organization, and unique contribution"
+      figures: ["Fig. 1: Technology history timeline", "Fig. 2: Measurement chain framework diagram"]
+      pedagogical_role: "Establish the cognitive map that readers use throughout the paper"
+
+    - number: "2"
+      title: "Microneedle Fabrication & Materials Engineering"
+      word_target: 3000
+      subsections:
+        - "2.1 Substrate materials: Si, metals, polymers, carbon, hydrogels (5-class comparison)"
+        - "2.2 Geometric configurations: solid, hollow, porous, dissolving, coated"
+        - "2.3 Electrode functionalization: enzyme immobilization, nanostructuring, biorecognition"
+        - "2.4 Fabrication processes: etching, molding, 3D printing, electrodeposition"
+        - "2.5 Design decision guide: material × geometry × process selection (★ flowchart)"
+      figures: ["Fig. 3: Material taxonomy", "Fig. 4: Design decision flowchart"]
+      tables: ["Table 1: Material properties comparison matrix"]
+      pedagogical_role: "After reading, reader can answer: 'If I build a glucose MNA, what material and geometry?'"
+
+    - number: "3"
+      title: "Electrochemical Sensing Principles & Modalities"
+      word_target: 3000
+      subsections:
+        - "3.1 Electrochemical measurement fundamentals (accessible introduction)"
+        - "3.2 Amperometry: enzyme-catalyzed current → glucose/lactate"
+        - "3.3 Voltammetry: CV, DPV, SWV, FSCV → multi-analyte"
+        - "3.4 Impedance spectroscopy: label-free immunosensing"
+        - "3.5 Potentiometry: ion-selective electrodes → Na⁺/K⁺/pH"
+        - "3.6 Modality selection guide: analyte × LOD × selectivity × power (★ matrix)"
+      figures: ["Fig. 5: Sensing modality comparison radar chart"]
+      tables: ["Table 2: Quantitative performance comparison across all modalities"]
+      pedagogical_role: "After reading, reader can explain why amperometry suits glucose but EIS suits cortisol"
+
+    - number: "4"
+      title: "Target Biomarkers & Clinical Applications"
+      word_target: 2500
+      subsections:
+        - "4.1 Metabolic markers: glucose, lactate, uric acid, creatinine"
+        - "4.2 Electrolytes: Na⁺, K⁺, Ca²⁺, pH"
+        - "4.3 Stress & immune: cortisol, cytokines"
+        - "4.4 Neurotransmitters: dopamine, serotonin"
+        - "4.5 Therapeutic drug monitoring"
+        - "4.6 Multiplexed detection: array design and orthogonality"
+      tables: ["Table 3: Biomarker clinical significance and current detection status"]
+      pedagogical_role: "Reader understands what we measure and why each biomarker matters clinically"
+
+    - number: "5"
+      title: "Signal Chain & System Integration"
+      word_target: 3000
+      subsections:
+        - "5.1 Signal chain overview: needle-skin → AFE → digital output (★ block diagram)"
+        - "5.2 Needle-skin interface: ISF sampling kinetics, interfacial impedance"
+        - "5.3 Analog front-end: potentiostat, low-noise amplifier, ADC"
+        - "5.4 Flexible substrate & skin-conformal design"
+        - "5.5 Wireless communication: BLE, NFC, LoRa protocol selection"
+        - "5.6 Power management: battery, energy harvesting, power budget"
+      figures: ["Fig. 6: Complete signal chain block diagram", "Fig. 7: Flexible substrate examples"]
+      tables: ["Table 4: System integration approaches comparison"]
+      pedagogical_role: "Unique instrument science perspective — reader sees the ENTIRE signal chain as one system"
+
+    - number: "6"
+      title: "Embedded Intelligence & Data Processing"
+      word_target: 2500
+      subsections:
+        - "6.1 Signal preprocessing: filtering, baseline correction, drift compensation"
+        - "6.2 Calibration: factory, in-situ, personalized ML"
+        - "6.3 Edge AI: anomaly detection, trend prediction, closed-loop control"
+        - "6.4 Cloud connectivity and digital health ecosystem"
+        - "6.5 End-to-end system teardowns: 3 representative systems deep-dived (★ case studies)"
+      figures: ["Fig. 8: Edge AI processing pipeline"]
+      tables: ["Table 5: End-to-end system teardown comparison"]
+      pedagogical_role: "Reader sees how real systems work from signal to insight; 3 case studies make it concrete"
+
+    - number: "7"
+      title: "Challenges, Commercialization & Future Perspectives"
+      word_target: 2500
+      subsections:
+        - "7.1 Biofouling and long-term stability"
+        - "7.2 ISF-blood lag and calibration accuracy"
+        - "7.3 Commercialization landscape: products, patents, market analysis"
+        - "7.4 Regulatory pathways: FDA 510(k), CE, NMPA"
+        - "7.5 Emerging directions: closed-loop therapy, multi-modal, autonomous AI"
+        - "7.6 Open questions: 15 unresolved key problems (★ research guide)"
+      figures: ["Fig. 9: Commercialization landscape map", "Fig. 10: Challenge-opportunity matrix"]
+      tables: ["Table 6: Commercial CGM product comparison", "Table 7: Open questions with priority ratings"]
+      pedagogical_role: "Reader knows what's solved, what's commercial, what's still open — the research frontier map"
+
+    - number: "8"
+      title: "Conclusion"
+      word_target: 500
+      key_takeaways: 3
+      pedagogical_role: "3 actionable takeaways, not a summary"
+
+journal_requirements:
+  abstract_max_words: 300
+  highlights_required: true
+  highlights_count: 5
+  highlights_max_chars: 85
+  graphical_abstract_required: true
+  graphical_abstract_size: "400x300 px"
+  graphical_abstract_note: "No text overlay; clear schematic showing full measurement chain"
+  template: "elsarticle"
+  citation_style: "numbered"
+  cover_letter_required: true
+  credit_required: true
+  competing_interests_required: true
+  data_availability_required: true
+  submission_system: "Editorial Manager"
+  guide_for_authors: "https://www.elsevier.com/journals/biosensors-and-bioelectronics/0956-5663/guide-for-authors"

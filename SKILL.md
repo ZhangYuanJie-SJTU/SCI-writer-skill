@@ -1,22 +1,22 @@
 # SCI-writer
 ## Full-Chain Scientific Review Paper Orchestration System
-**Version:** 4.1.0 | **Target:** Q1/CAS-TOP Journals | **Mode:** Self-Contained + Optional Accelerators
+**Version:** 4.2.0 | **Target:** Q1/CAS-TOP Journals | **Mode:** Self-Contained + Optional Accelerators
 
-### What's New in v4.1 (Changelog)
+### What's New in v4.2 (Changelog)
+- **v4.1 → v4.2 major:**
+  - **Unified Pedagogical-Rigor Framework [NEW]** — Teaching and peer-review quality are no longer separate goals; the "measurement instrument chain" narrative structure serves both simultaneously
+  - **Stage 1.3 Measurement Chain Framework [NEW]** — §1 now includes a technology history timeline (§1.2) and a unifying measurement system framework (§1.3) that readers use as cognitive scaffolding throughout the paper
+  - **Stage 2 Search Pattern D/E/F [NEW]** — Foundational & tutorial papers (Pattern D), Chinese literature via CNKI/Wanfang (Pattern E), Commercial & industrial papers (Pattern F)
+  - **Stage 4 Sub-stage 4.5 Knowledge Scaffolding [NEW]** — Each section gets prerequisite mapping, concept introduction protocol, worked examples, and decision flowcharts
+  - **Stage 5 Pass 2.5 Pedagogical Enhancement [NEW]** — Between content writing (Pass 2) and evidence audit (Pass 3): concept introduction check, analogy check, decision guide check, quantitative table check
+  - **Stage 7 R7 New Reader Simulator [NEW]** — 7th reviewer simulates a first-year graduate student; tests understandability without sacrificing rigor
+  - **Domain Config: Decision Flowcharts [NEW]** — Material×geometry selection guide and sensing modality selection matrix embedded in outline
+  - **Domain Config: Commercial Benchmarks [NEW]** — Dexcom/Abbott/Medtronic/Senseonics product data for clinical validation context
+  - **Domain Config: Chinese Research Groups [NEW]** — 10+ CN research teams added for balanced geographic coverage
 - **v4.0 → v4.1 patch:**
-  - **Pipeline State Persistence [NEW]** — `sci_writer_state.md` written after every stage; pipeline survives context compaction and multi-day runs; `/sciw resume` command added
-  - **BibTeX Key Convention [NEW]** — Mandatory naming standard `AuthorYYYYKeyword` prevents key collisions across sessions
-  - **Gate A Exception Path [NEW]** — Documented "domain-limited corpus" exception with explicit conditions and compensating controls
-  - **Stage 9 Verification Scripts [NEW]** — Python snippets for abstract word count, highlights char count, LaTeX word count; no texcount dependency
-  - **Stage 6.5 Table Legend Check [NEW]** — Auto-scan for caption legend symbols vs. table body usage
-  - **Elsevier template URL [FIX]** — Fixed to `mirrors.ctan.org` direct download links
-  - **Stage 7 threshold [FIX]** — Resolved contradiction between Scoring Protocol and Score Escalation Rule; R1=78/R2=80/R3=82 now consistent throughout
+  - Pipeline State Persistence · BibTeX Key Convention · Gate A Exception Path · Verification Scripts · Table Legend Check · Elsevier URL Fix · Stage 7 Threshold Fix
 - **v3.0 → v4.0 upgrades:**
-  - Stage 6.5 Figure Mount & Cross-Reference Verification
-  - Stage 7 sixth reviewer R6 (Format/Integration Auditor)
-  - Gate B Method-Type Consistency Check
-  - Gate C Cross-Reference Completeness
-  - Stage 10 [AUTO]/[USER] delivery classification
+  - Stage 6.5 · R6 Reviewer · Method-Type Consistency · Score Escalation · [AUTO]/[USER] Classification
 
 ---
 
@@ -61,7 +61,7 @@ Some tasks reference skills that may not be installed. SCI-writer has built-in f
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│              SCI-writer v4.0.0                               │
+│              SCI-writer v4.2.0                               │
 │        Full-Chain Review Paper Pipeline                       │
 ├──────────────────────────────────────────────────────────────┤
 │  CORE PIPELINE — fully self-contained, zero dependencies      │
@@ -131,8 +131,15 @@ PHASE IV — DELIVERY
 3. Search for existing reviews in the field (use tavily-search or WebSearch):
    - Query pattern: `"[domain] review [year range]" site:sciencedirect.com OR site:nature.com`
    - Query pattern: `"[domain] comprehensive review" [journal name]`
+   - Query pattern: `"[domain] tutorial introduction fundamentals" site:pubmed.ncbi.nlm.nih.gov`
 4. For each found review: identify what scope it covers and what it omits
-5. Output a **Gap Statement** document:
+5. Build a **Technology History Timeline** (§1.2 content): map the field's evolution from first demonstration to current state, identifying 8–12 milestone papers with dates. This timeline becomes Fig. 1 in the final paper.
+6. Design a **Unifying Framework Diagram** (§1.3 content): define the single cognitive model that organizes the entire paper. For engineering/technology reviews, the "measurement instrument chain" framework (被测量 → 前端感知 → 信号调理 → 数据处理 → 输出) is recommended. This framework must be:
+   - Simple enough for a new graduate student to grasp in 30 seconds
+   - Precise enough for a domain expert to see the design space
+   - Comprehensive enough to accommodate all planned sections
+   This framework becomes the paper's central figure and is referenced in every subsequent section.
+7. Output a **Gap Statement** document:
 
 ```
 ## Research Gap Analysis
@@ -181,6 +188,29 @@ Filter: 2022–2026, high-impact journals
 "[technology A]" AND "[technology B]" AND "[target application]"
 Filter: any year, look for integration papers
 ```
+
+**Pattern D — Foundational & tutorial (for pedagogical depth):**
+```
+"[field]" AND ("tutorial" OR "introduction" OR "fundamentals" OR "primer" OR "basic principles")
+Filter: highly cited review articles, textbook chapters, any year
+```
+Purpose: papers that explain core concepts accessibly. These are cited in §1 and §3.X introductory paragraphs to build reader understanding.
+
+**Pattern E — Chinese literature (for geographic balance):**
+```
+Search CNKI/Wanfang: "[Chinese keywords]" AND "[field]"
+Search PubMed: "[field]" AND ("China" OR "Chinese" in affiliation)
+Filter: Q1/Q2 journals or top Chinese journals (化学进展, 分析化学, 传感器技术学报)
+```
+Purpose: ensure Chinese research groups are represented, especially for SJTU-affiliated authors.
+
+**Pattern F — Commercial & industrial (for real-world context):**
+```
+"[product name]" AND ("clinical trial" OR "MARD" OR "FDA" OR "CE marking")
+"[field]" AND ("patent" OR "commercialization" OR "manufacturing scale-up")
+Filter: any year, include white papers and regulatory filings
+```
+Purpose: bridge the lab-to-market gap. Cited in §7 (Challenges & Commercialization).
 
 **Search Sources (check in order):**
 1. `tavily-search` with query + `site:pubmed.ncbi.nlm.nih.gov`
@@ -379,43 +409,65 @@ Assign every major extracted finding one of four evidence grades. Note grade in 
 
 **Goal:** Build a logically airtight outline where each section has a clear purpose, the narrative flows from problem to solution, and the paper's unique contribution is unmistakable.
 
-### Universal Outline Template (Adaptable)
+### Universal Outline Template (Adaptable — v4.2 Measurement Instrument Chain)
 
 ```
-1. Introduction (~2,000 words)
-   1.1 Clinical/societal motivation [establish urgency]
-   1.2 Limitations of conventional approaches [problem]
-   1.3 [Core technology] as the solution [bridge]
+1. Introduction (~2,000–2,500 words)
+   1.1 Clinical/societal motivation — establish urgency [why this matters]
+   1.2 Technology history — key milestones from first demo to current state [temporal context]
+   1.3 [Unifying framework] — the cognitive model for the entire paper ★ [cognitive map]
    1.4 Scope, organization, and unique contribution of this review [claim]
 
-2. [Foundation Layer] (~2,500–3,500 words)
+2. [Foundation Layer: Device Fabrication & Materials] (~2,500–3,500 words)
    [Cover the enabling technology/materials/fabrication]
    Sub-sections: organized by category (material/geometry/method/etc.)
+   End with: Design decision guide (flowchart) for material × geometry selection
 
-3. [Functional Layer] (~2,500–3,500 words)
-   [Cover the core functional mechanism]
+3. [Functional Layer: Sensing Principles & Modalities] (~2,500–3,500 words)
+   [Cover the core functional mechanism — how the sensor generates a signal]
    Sub-sections: organized by operating principle or modality
+   Begin with: foundational measurement concepts (accessible to newcomers)
+   End with: Sensing modality selection matrix (quantitative comparison table)
 
-4. [Application Domain] (~2,500–3,500 words)
+4. [Application Layer: Target Biomarkers & Clinical Use] (~2,000–2,500 words)
    [Cover specific use cases and target analytes]
-   Sub-sections: organized by application category
+   Sub-sections: organized by application category (metabolic / ionic / stress / neural / drug)
 
-5. [System Integration Layer] (~2,000–3,000 words)
-   [Cover how components integrate into working systems]
-   Sub-sections: hardware, software, connectivity
+5. [Integration Layer: Signal Chain & System Design] (~2,500–3,500 words) ★ KEY SECTION
+   [Cover the COMPLETE signal chain from sensor interface to digital output]
+   Sub-sections: sensor-skin interface → analog front-end → flexible substrate →
+                 wireless communication → power management
+   This section treats the entire system as a measurement instrument —
+   the unique perspective of instrument science / measurement engineering
 
-6. [Intelligence/Advanced Features] (~2,000–2,500 words)
-   [Cover advanced capabilities: AI, closed-loop, etc.]
-   Sub-sections: algorithms, edge computing, clinical validation
+6. [Intelligence Layer: Data Processing & Edge AI] (~2,000–2,500 words)
+   [Cover signal processing, calibration, edge AI, cloud connectivity]
+   Include: 2–3 end-to-end system teardowns from literature (deep case studies)
 
-7. Challenges and Future Perspectives (~2,000 words)
+7. Challenges, Commercialization & Future (~2,000–2,500 words)
    7.1 Open technical challenges [honest assessment]
-   7.2 Translation barriers (regulatory, cost, manufacturing)
-   7.3 Emerging directions and research priorities
+   7.2 Commercialization landscape — existing products, patents, market
+   7.3 Translation barriers (regulatory: FDA/CE/NMPA, cost, manufacturing)
+   7.4 Emerging directions and research priorities
+   7.5 Open questions list (15–25 items with priority ratings) ★ research guide
 
 8. Conclusion (~500 words)
    [3 key takeaways, not a summary of what was written]
 ```
+
+**Key differences from v4.1 outline:**
+- §1.2 adds technology history timeline → builds temporal context for newcomers
+- §1.3 adds unifying framework → the cognitive model referenced throughout the paper
+- §2 ends with design decision guide → readers can make their own design choices
+- §3 begins with foundational concepts → accessible to newcomers without losing depth
+- §3 ends with modality selection matrix → quantitative comparison, not just narrative
+- §5 is restructured as "Signal Chain" → the instrument science perspective (end-to-end)
+- §6 includes system teardowns → real-world case studies for deeper understanding
+- §7 adds commercialization + open questions → bridges lab-to-market gap
+
+**The "measurement instrument chain" framework (§1.3) is the key innovation:**
+it makes the paper simultaneously educational (clear cognitive structure) and
+professional (design space analysis, quantitative benchmarks, system-level thinking).
 
 ### Outline → Figure Mapping (mandatory)
 
@@ -430,6 +482,44 @@ At outline stage, produce a `figure_plan.md` with this structure for EVERY figur
 ```
 
 This mapping becomes the checklist for Stage 6.5. Figures without a planned `\ref{}` location are **not allowed** — add one before proceeding.
+
+### Sub-stage 4.5 — Knowledge Scaffolding Design (v4.2 — pedagogical architecture)
+
+**Goal:** Ensure every section builds reader understanding progressively, not just presents facts. This is NOT a separate "educational layer" — it is embedded into the section structure itself.
+
+**For each section in the outline, define:**
+
+**A. Prerequisite Map:**
+```
+§3.2 (Amperometry) prerequisites:
+  → §3.1 covers: electrode-electrolyte interface, Faradaic current
+  → External: basic circuit theory (Ohm's law, RC circuits)
+  → Concept to introduce before first use: "overpotential"
+```
+
+**B. Concept Introduction Protocol (applied during Stage 5 Pass 2.5):**
+- Every technical term MUST have a one-sentence physical meaning explanation at first occurrence
+- At least one analogy per section linking to instrument science / circuits / measurement
+- Example: "EIS measures how the electrode interface resists current at different frequencies — analogous to measuring the frequency response of a filter circuit"
+
+**C. Decision Flowchart Specification (becomes a figure):**
+For sections covering design choices (materials, sensing modalities, circuit topologies), specify a decision flowchart:
+```
+Decision chart for §2.5: Material × Geometry selection
+Input: target analyte, wear duration, manufacturing capability
+Output: recommended material + geometry + fabrication method
+```
+This flowchart is designed here (Stage 4) and generated in Stage 6.
+
+**D. Quantitative Benchmark Table Specification:**
+For each technical section, define the comparison table that will appear at its end:
+```
+§3 end-of-section table: Sensing modality comparison matrix
+Columns: [modality] [analyte] [LOD] [sensitivity] [linear range] [response time] [stability] [power]
+```
+
+**E. What-We-Know / What-We-Don't Map:**
+For §7, pre-define the list of open questions (15–25 items) with priority ratings. This is both a teaching tool ("here's what we don't know yet") and a research guide ("here's where you can contribute").
 
 ### Narrative Flow Validation
 
@@ -549,6 +639,13 @@ Each section must complete all 4 passes before moving to the next section.
 - Assign a source paper from corpus to every technical claim (use `[NEEDS_REF: claim]` if none)
 - Cite with exact location: "Smith et al. (Table 2) reported..." or "as shown in Fig. 3 of [ref]"
 - End each paragraph with a transition sentence to the next claim
+
+**Pass 2.5 — Pedagogical Enhancement (10 min per section) (NEW in v4.2):**
+- **Concept introduction check:** every technical term at first occurrence has a one-sentence physical meaning explanation. If not, add one inline (no separate Box needed — one sentence suffices).
+- **Analogy check:** at least one analogy per section linking to instrument science / circuits / measurement. Example: "the charge-transfer resistance Rct in EIS is analogous to the output impedance of a circuit — higher Rct means the electrode 'resists' the electrochemical reaction more."
+- **Decision guide check:** if this section covers design choices, verify a decision flowchart or selection matrix is referenced (from Stage 4 Sub-stage 4.5). If missing, add a forward reference to the relevant figure.
+- **Quantitative table check:** key performance data is presented in a comparison table (not only in narrative text). Tables serve both quick-reference (expert) and learning (newcomer) purposes.
+- **Section-opening motivation check:** the first paragraph answers "why does this section matter?" before diving into technical content. This is NOT "In this section, we will..." — it is a substantive motivation statement.
 
 **Pass 3 — Evidence audit (10–15 min per section):**
 - Scan for ALL: numbers, percentages, "first", "highest", "best", "only", "novel", "unprecedented"
@@ -944,6 +1041,27 @@ R6 Checks:
 [ ] Grant numbers in acknowledgments (or explicit "No funding" statement)
 ```
 
+**R7 — New Reader Simulator (NEW in v4.2)**
+Focus: Can a first-year graduate student in the author's field read this paper and emerge with a working understanding of the entire domain?
+Test scenario: "You are a first-year Master's student in [instrument science / biomedical engineering / chemistry]. You've taken basic courses but have never worked in this specific field."
+
+Evaluation questions (answerable after reading):
+1. After §1: Can you draw the complete system block diagram from memory?
+2. After §2: Do you know "if I were to build a [X] sensor, what material and geometry should I choose?"
+3. After §3: Can you explain the fundamental difference between [modality A] and [modality B] in physical terms?
+4. After §5: Can you identify the noise sources at each stage of the signal chain?
+5. After §7: Do you know what problems in this field remain unsolved?
+
+Scoring (25 pts × 4 dimensions):
+- **Understandability** (25): Are concepts introduced progressively? Are analogies appropriate?
+- **Actionability** (25): After reading, could the reader independently design a basic experiment?
+- **Completeness** (25): Are there knowledge gaps that would block the reader?
+- **Depth** (25): Does the paper go beyond textbook-level understanding?
+
+R7 < 70 = add pedagogical scaffolding (concept introductions, analogies, decision guides)
+     but do NOT reduce technical depth — add clarity, not simplification.
+R7 is scored in addition to R1–R6; it does not replace any existing reviewer.
+
 ### Scoring Protocol
 
 For each reviewer, score 0–100 on:
@@ -956,18 +1074,19 @@ For each reviewer, score 0–100 on:
 
 Stage 7 runs up to 3 times across the pipeline. Each round has its own threshold:
 
-| Round | When | Pass threshold | Min single reviewer |
-|-------|------|---------------|---------------------|
-| **R1** — Initial Stage 7 (pre-Stage 8) | After Stage 6.5 | avg ≥ 78 | ≥ 70 |
-| **R2** — After Stage 8 P0 fixes | Mandatory re-score after P0 revisions | avg ≥ 80 | ≥ 75 |
-| **R3** — After Stage 8 P1 fixes | Optional re-score after P1 revisions | avg ≥ 82 | ≥ 78 |
+| Round | When | Pass threshold | Min single reviewer (R1–R6) | R7 minimum |
+|-------|------|---------------|---------------------------|------------|
+| **R1** — Initial Stage 7 (pre-Stage 8) | After Stage 6.5 | avg ≥ 78 | ≥ 70 | ≥ 65 |
+| **R2** — After Stage 8 P0 fixes | Mandatory re-score after P0 revisions | avg ≥ 80 | ≥ 75 | ≥ 70 |
+| **R3** — After Stage 8 P1 fixes | Optional re-score after P1 revisions | avg ≥ 82 | ≥ 78 | ≥ 75 |
 
 **Additional constraints (all rounds):**
 - R6 (Format Auditor) score < 70 in any round → fix formatting before re-scoring R6
-- If avg score decreases from R1→R2 after revisions: the revisions were cosmetic — return to Stage 5 for substantive rewriting
-- **Final delivery standard: R2 avg ≥ 80** (R3 is best-effort, not blocking)
+- R7 (New Reader Simulator) score < 65 in R1 → add pedagogical scaffolding and re-score
+- If avg score (R1–R6) decreases from R1→R2 after revisions: the revisions were cosmetic — return to Stage 5 for substantive rewriting
+- **Final delivery standard: R2 avg (R1–R6) ≥ 80 AND R7 ≥ 70** (R3 is best-effort, not blocking)
 
-**Gate C uses R2 avg score** as the primary quality metric. Record all three round scores in `review_report.md`.
+**Gate C uses R2 avg score (R1–R6)** as the primary quality metric, plus **R7 ≥ 70** as the pedagogical quality metric. Record all round scores in `review_report.md`.
 
 ⚡ **Accelerators (optional):** invoke `academic-paper-reviewer` in full-review mode; `reviewer-defense` for pre-building rebuttals; `peer-review` for additional perspectives
 
@@ -1234,10 +1353,11 @@ if commented:
 GATE C Checklist:
 [ ] Stage 6.5 passed: zero commented-out \includegraphics, zero orphan figures
 [ ] Gate B passed: 0 [NOT_FOUND], 0 [MISMATCH], 0 [METHOD_X] flags anywhere
-[ ] Peer review simulation: average score ≥ 80/100, all 6 reviewers ≥ 65
+[ ] Peer review simulation: average score (R1–R6) ≥ 80/100, all 6 reviewers ≥ 65
 [ ] R6 (Format Auditor) score ≥ 70
+[ ] R7 (New Reader Simulator) score ≥ 70 — pedagogical quality confirmed
 [ ] All P0 and P1 revision items resolved and verified
-[ ] Word count: within ±10% of journal guideline (8,000–15,000 for B&B)
+[ ] Word count: within ±10% of journal guideline
 [ ] All figures: ≥300 DPI, files on disk, \includegraphics active and correct filename
 [ ] Every \label{fig:X} has ≥1 \ref{fig:X} in text
 [ ] Every \label{tab:X} has ≥1 \ref{tab:X} in text
@@ -1247,6 +1367,9 @@ GATE C Checklist:
 [ ] Cover letter written and personalized to journal
 [ ] All author information complete and in correct order
 [ ] Table captions: all legend symbols defined
+[ ] §1 contains technology history timeline and unifying framework diagram reference
+[ ] Each technical section has ≥1 concept introduction (first-occurrence term explained)
+[ ] Decision flowcharts/selection matrices present for design-choice sections
 
 PASS → Stage 10
 FAIL → identify failed items, loop back to Stage 5/6.5/7/9 as appropriate
@@ -1459,25 +1582,47 @@ review:
 
 ```yaml
 paper:
-  title: "Wearable Electrochemical Sensing Systems Based on Microneedle Arrays: A Full-Chain Review from Sensor Fabrication to Intelligent Embedded Terminals"
+  title: "Microneedle-Based Wearable Electrochemical Sensing: A Full-Chain Engineering Review from Material Design to Intelligent Terminals"
+  short_title: "Microneedle Electrochemical Sensing: Full-Chain Review"
   journal: "Biosensors and Bioelectronics"
   type: "review"
-  word_target: 13000
-  reference_target: 130
+  word_target: 16000
+  reference_target: 200
+  figures_target: 10
+  tables_target: 5
 
 domain:
   field: "wearable electrochemical biosensing via microneedle arrays"
+  unifying_framework: "measurement_instrument_chain"
+  framework_description: >
+    The microneedle sensing system is modeled as a complete measurement instrument:
+    Target analyte → Needle-skin interface (sampling) → Electrochemical transduction
+    → Analog front-end (signal conditioning) → Digital processing (MCU/AI) → Clinical output.
+    Each section of the paper maps to one stage of this chain.
   keywords:
     primary: ["microneedle array", "electrochemical sensing", "wearable biosensor", "minimally invasive", "continuous monitoring"]
-    secondary: ["sweat analysis", "interstitial fluid", "transdermal", "embedded system", "IoT health"]
+    secondary: ["sweat analysis", "interstitial fluid", "transdermal", "embedded system", "IoT health", "point-of-care"]
 
   key_researchers:
-    - "Joseph Wang (UCSD) — flexible wearable electrochemical sensors"
-    - "Ali Javey (UC Berkeley) — multiplexed wearable patches"
-    - "Wei Gao (Caltech) — fully integrated sensor systems"
-    - "Hyunjae Lee (POSTECH) — painless microneedle glucose"
-    - "Rodrigo Martinez-Duarte (Clemson) — carbon microneedle fabrication"
-    - "Martin Pumera (VSB-TUO) — 3D printed microneedles"
+    # International groups
+    - "Joseph Wang (UCSD) — flexible wearable electrochemical patches, glucose/lactate"
+    - "Ali Javey (UC Berkeley) — multiplexed wearable sensor arrays, FPCB integration"
+    - "Wei Gao (Caltech) — fully integrated wearable systems, machine learning integration"
+    - "Hyunjae Lee (POSTECH) — painless hollow microneedle glucose, clinical validation"
+    - "Rodrigo Martinez-Duarte (Clemson) — carbon microneedle arrays"
+    - "Martin Pumera (VSB-TUO) — 3D printed microneedle electrodes"
+    - "Mark Prausnitz (Georgia Tech) — dissolvable microneedle delivery/sensing"
+    - "Devansh Bhansali (FIU) — microneedle cortisol, ISF sampling"
+    - "Liangbing Hu (UMD) — flexible electronics, nanostructured electrodes"
+    - "Nae-Eung Lee (Sungkyunkwan) — stretchable electronics, skin-interfaced"
+    # Chinese groups (essential for balanced coverage)
+    - "Lingqian Chang (PKU) — microneedle transcutaneous biosensing"
+    - "Zhuo Li (HUST) — flexible electronics + microneedle integration"
+    - "Yong Zhu (PKU) — 3D printed microneedle arrays"
+    - "Fei Liu (CAS Suzhou Institute) — microneedle continuous glucose monitoring"
+    - "Jianfeng Ping (ZJU) — wearable electrochemical sensors"
+    - "Zhong Lin Wang (TJU/BIT) — nanogenerator + self-powered sensing"
+    - "Yuehe Lin (WSU) — nanomaterial-enhanced electrochemical biosensors"
 
   detection_method_taxonomy:
     electrochemical:
@@ -1490,65 +1635,138 @@ domain:
     optical:
       - fluorescence       # HCR amplification, quantum dot
       - SERS               # surface-enhanced Raman on Au-MNA
+      - colorimetric       # paper-based, smartphone readout
+    mechanical:
+      - piezoresistive     # pressure/strain on microneedle tip
+      - piezoelectric      # dynamic pressure measurement
+    thermal:
+      - thermistor         # temperature at needle tip
+      - IR                 # non-contact thermal mapping
 
   performance_metrics:
-    - {name: "Glucose LOD", unit: "μM", good_threshold: "< 1"}
-    - {name: "Glucose sensitivity", unit: "μA mM⁻¹ cm⁻²", good_threshold: "> 10"}
-    - {name: "Lactate LOD", unit: "μM", good_threshold: "< 5"}
-    - {name: "Cortisol LOD (EIS)", unit: "ng/mL", good_threshold: "< 1"}
-    - {name: "Ion slope", unit: "mV/decade", good_threshold: "55–65 (Nernstian)"}
-    - {name: "CGM MARD", unit: "%", good_threshold: "< 10 (commercial: 8.2–9.7)"}
+    - {name: "Glucose LOD", unit: "μM", good_threshold: "< 1", excellent: "< 0.1"}
+    - {name: "Glucose sensitivity", unit: "μA mM⁻¹ cm⁻²", good_threshold: "> 10", excellent: "> 50"}
+    - {name: "Glucose linear range", unit: "mM", good_threshold: "0.1–20", clinical: "2.8–22.2"}
+    - {name: "Lactate LOD", unit: "μM", good_threshold: "< 10", excellent: "< 5"}
+    - {name: "Uric acid LOD (DPV)", unit: "μM", good_threshold: "< 1"}
+    - {name: "Cortisol LOD (EIS/aptasensor)", unit: "ng/mL", good_threshold: "< 1"}
+    - {name: "Na⁺ slope", unit: "mV/decade", good_threshold: "55–62 (Nernstian 59.2)"}
+    - {name: "K⁺ slope", unit: "mV/decade", good_threshold: "55–62"}
+    - {name: "Ion selectivity coefficient (ISE)", unit: "log k", good_threshold: "< -2"}
+    - {name: "Mechanical fracture force", unit: "N/needle", good_threshold: "> 0.1"}
+    - {name: "Skin insertion depth", unit: "μm", good_threshold: "200–800 (epidermis)"}
+    - {name: "CGM MARD", unit: "%", good_threshold: "< 10", commercial: "8.2–9.7"}
+    - {name: "Wireless range (BLE)", unit: "m", good_threshold: "> 5"}
+    - {name: "Power consumption", unit: "mW", good_threshold: "< 10 for continuous"}
+
+  commercial_benchmarks:
+    - {product: "Dexcom G7", MARD: "8.2%", wear_time: "10d", analyte: "glucose", sensor: "enzyme electrode"}
+    - {product: "Abbott FreeStyle Libre 3", MARD: "7.9%", wear_time: "14d", analyte: "glucose", sensor: "enzyme electrode"}
+    - {product: "Medtronic Guardian 4", MARD: "8.7%", wear_time: "7d", analyte: "glucose", sensor: "enzyme electrode"}
+    - {product: "Senseonics Eversense 365", MARD: "8.5%", wear_time: "365d", analyte: "glucose", sensor: "flourescence"}
 
   search_clusters:
-    - name: "Cluster A: Microneedle Fabrication"
+    - name: "Cluster A: Microneedle Fabrication & Materials"
       queries:
-        - "microneedle array electrochemical sensor fabrication"
-        - "hollow microneedle electrodeposition PEDOT glucose"
-        - "polymer microneedle tip functionalization enzyme"
-        - "silicon microneedle array electrochemical"
-        - "3D printed microneedle biosensor"
-    - name: "Cluster B: Sensing Modalities"
+        - "microneedle array electrochemical sensor fabrication silicon"
+        - "hollow microneedle electrodeposition PEDOT glucose amperometric"
+        - "polymer PDMS SU-8 microneedle electrochemical sensor"
+        - "metal microneedle array gold platinum electrode"
+        - "3D printed microneedle electrode biosensor"
+        - "hydrogel microneedle swelling interstitial fluid"
+        - "carbon nanotube graphene microneedle electrode"
+        - "microneedle tip modification enzyme immobilization"
+    - name: "Cluster B: Electrochemical Sensing Modalities"
       queries:
-        - "microneedle amperometric glucose continuous"
-        - "wearable voltammetry DPV SWV microneedle"
-        - "impedance spectroscopy microneedle cortisol"
-        - "ion-selective electrode microneedle potentiometric"
-    - name: "Cluster C: System Integration"
+        - "microneedle amperometric glucose oxidase continuous monitoring"
+        - "wearable differential pulse voltammetry DPV microneedle"
+        - "square wave voltammetry SWV uric acid wearable"
+        - "impedance spectroscopy EIS microneedle aptasensor cortisol"
+        - "ion selective electrode potentiometric wearable skin"
+        - "FSCV fast scan cyclic voltammetry dopamine wearable"
+        - "multiplexed electrochemical array wearable simultaneous"
+    - name: "Cluster C: Wearable System Integration"
       queries:
-        - "wearable electrochemical patch flexible substrate"
-        - "wireless electrochemical sensor Bluetooth NFC"
-        - "integrated biosensor readout circuit ASIC"
-    - name: "Cluster D: Embedded Intelligence"
+        - "flexible substrate wearable electrochemical patch skin"
+        - "wireless Bluetooth NFC electrochemical sensor wearable"
+        - "analog front end potentiostat wearable biosensor ASIC"
+        - "power management wearable biosensor energy harvesting"
+        - "stretchable electronics biosensor skin-interfaced"
+    - name: "Cluster D: Embedded Intelligence & Terminals"
       queries:
-        - "edge computing wearable biosensor machine learning"
-        - "embedded MCU electrochemical sensing IoT"
-        - "closed-loop insulin delivery electrochemical"
-    - name: "Cluster E: Clinical Validation"
+        - "edge computing machine learning wearable biosensor calibration"
+        - "embedded MCU microcontroller electrochemical sensing IoT"
+        - "closed loop insulin delivery glucose sensor wearable"
+        - "smartphone interface electrochemical wearable health data"
+        - "signal processing algorithm drift correction wearable sensor"
+    - name: "Cluster E: Clinical & In Vivo Validation"
       queries:
-        - "microneedle in vivo glucose validation clinical"
-        - "wearable lactate monitoring exercise clinical"
-        - "transdermal cortisol monitoring human"
+        - "microneedle in vivo glucose monitoring human clinical"
+        - "wearable lactate continuous monitoring exercise validation"
+        - "transdermal cortisol monitoring human study"
+        - "interstitial fluid microneedle glucose accuracy Clarke"
+    - name: "Cluster F: Foundational & Tutorial"  # NEW in v4.2
+      queries:
+        - "microneedle review tutorial introduction"
+        - "electrochemical biosensor fundamentals review"
+        - "wearable sensor design principles review"
+        - "microfabrication microneedle protocol method"
+    - name: "Cluster G: Chinese Literature"  # NEW in v4.2
+      queries:
+        - "microneedle electrochemical sensor review"
+        - "microneedle continuous monitoring fabrication"
+        - "wearable biosensor microneedle signal processing"
+      databases: ["CNKI", "Wanfang", "PubMed (Chinese affiliation filter)"]
+    - name: "Cluster H: Commercial & Industrial"  # NEW in v4.2
+      queries:
+        - "CGM commercial Dexcom Abbott Medtronic comparison MARD"
+        - "microneedle patent landscape commercialization"
+        - "microneedle FDA 510k CE marking regulatory pathway"
 
   journals_to_monitor:
     - "Biosensors and Bioelectronics"
     - "ACS Nano"
     - "Advanced Materials"
-    - "Lab on a Chip"
+    - "Advanced Functional Materials"
     - "Analytical Chemistry"
-    - "npj Digital Medicine"
+    - "Lab on a Chip"
     - "Nature Electronics"
+    - "npj Digital Medicine"
+    - "Theranostics"
+    - "Small"
+    - "Nano Energy"
+    - "ACS Applied Materials & Interfaces"
+    - "Chemical Reviews"
+    - "Chemical Society Reviews"
+
+  technology_milestones:  # For §1.2 history timeline
+    - {year: 2000, event: "Prausnitz: microneedle transdermal drug delivery concept", ref: "Prausnitz2004NatRevDrugDiscov"}
+    - {year: 2005, event: "First electrochemical microneedle glucose sensor", ref: "first_mn_glucose"}
+    - {year: 2010, event: "Hollow microneedle + ISF sampling demonstrated", ref: "hollow_mn_isf"}
+    - {year: 2015, event: "Wearable electrochemical patch era begins (Wang, Javey)", ref: "wearable_patch_era"}
+    - {year: 2018, event: "FreeStyle Libre commercial CGM success", ref: "freestyle_libre"}
+    - {year: 2020, event: "Multiplexed microneedle arrays + wireless integration", ref: "multiplexed_mn"}
+    - {year: 2022, event: "Edge AI + closed-loop insulin delivery concept", ref: "edge_ai_closed_loop"}
+    - {year: 2024, event: "7-day continuous monitoring + ML calibration", ref: "7day_ml_calibration"}
+    - {year: 2026, event: "Current state: full-chain integration from needle to cloud", ref: "current_state"}
 
 review:
   existing_reviews_to_beat:
-    - "Sekar 2023 Adv Mater — covers fabrication but not embedded systems"
-    - "Yang 2022 Chem Soc Rev — electrochemistry focus, no IoT/embedded"
-    - "Teymourian 2021 ACS Nano — strong on wearables, weak on microneedle specifics"
+    - "Sekar 2023 Adv Mater — fabrication focus, minimal embedded systems/AI"
+    - "Yang 2022 Chem Soc Rev — electrochemistry fundamentals, not wearable integration"
+    - "Teymourian 2021 ACS Nano — strong wearable patch coverage, weak on microneedle specifics"
+    - "Zhao 2023 Biosens Bioelectron — microneedle diabetes focus, narrow scope"
+    - "Li 2024 Adv Sci — wearable biosensor review, limited microneedle+terminal integration"
+    - "Kim 2023 ACS Nano — microneedle drug delivery/sensing dual function"
+    - "Zhang 2024 Chem Eng J — 3D printed microneedle, no system integration"
 
   unique_contribution: >
-    This is the first review to cover the COMPLETE system chain from microneedle
-    array fabrication through electrochemical transduction to signal conditioning
-    circuits and intelligent embedded terminals, treating the sensing system as an
-    integrated engineering product rather than isolated components.
+    This is the FIRST comprehensive review to adopt a measurement instrument chain
+    framework, treating wearable microneedle-based electrochemical sensing as a
+    complete engineering system — from material design and electrochemical transduction
+    through signal conditioning circuits to embedded intelligent terminals — and
+    providing systematic decision guides (material × geometry × sensing modality)
+    that enable readers to independently design and evaluate microneedle sensing systems.
 ```
 
 ---
@@ -1800,7 +2018,8 @@ If the user has a global CLAUDE.md, this skill respects those rules:
 
 ---
 
-*SCI-writer v4.1.0 — Designed for researchers who want to write papers, not manage tools.*
+*SCI-writer v4.2.0 — Designed for researchers who want to write papers, not manage tools.*
+*v4.2 major: Unified pedagogical-rigor framework · Technology history + measurement chain framework (§1.2–1.3) · Search Pattern D/E/F (foundational/Chinese/commercial) · Knowledge scaffolding sub-stage (4.5) · Pass 2.5 pedagogical enhancement · R7 new reader simulator · Decision flowcharts · Commercial benchmarks · Chinese research groups*
 *v4.1 patch: Pipeline state persistence · BibTeX key convention · Gate A exception path · Verification scripts · Table legend check · Elsevier URL fix · Stage 7 threshold fix*
 *v4.0 major: Stage 6.5 · R6 reviewer · Method-type consistency · Score escalation · [AUTO]/[USER] classification*
-*SJTU Wang Lab | 张元杰 + 王侃 | Updated: 2026-05-14*
+*SJTU Wang Lab | 张元杰 + 王侃 | Updated: 2026-05-29*
