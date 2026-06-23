@@ -1,8 +1,31 @@
 # SCI-writer
 ## Full-Chain Scientific Review Paper Orchestration System
-**Version:** 5.0.0 | **Target:** Nature-Communications-Level Quality (Q1/CAS-TOP baseline) | **Mode:** Self-Contained + Model-Adaptive + Iterative Quality Loops
+**Version:** 5.2.0 | **Target:** Nature-Communications-Level Quality (Q1/CAS-TOP baseline) | **Mode:** Self-Contained + Model-Adaptive + Iterative Quality Loops
 
-### What's New in v5.0 (Changelog)
+### What's New in v5.2 (Changelog)
+- **v5.1 → v5.2 — Nature-Skills Absorption Update:**
+  - **Confirmation Gate [NEW]** — Thinking-First Protocol now includes a hard stop: if claim/evidence/boundary are missing before Stage 5 writing, HALT and ask 2–3 targeted questions instead of proceeding on assumptions. Prevents drafting on false premises. Inspired by nature-writing's `stance.md` confirmation gate.
+  - **Terminology Ledger [NEW]** — Proactive canonical term extraction at Stage 3→4 boundary, BEFORE writing begins. Extracts recurring methods, models, datasets, metrics, abbreviations, and notation into a ledger enforced across all sections. Complements v5.1's reactive Pass 2.5 consistency check. Inspired by nature-polishing's terminology ledger.
+  - **Failure Mode Hierarchy [NEW]** — Stage 5 quality fixes now follow a strict priority order: Paper Type → Section Job → Paragraph Logic → Claim/Evidence/Boundary → Sentence Polish. Never polish sentences when the structure is wrong. Inspired by nature-polishing's `failure-modes.md`.
+  - **AI Ethics Traffic-Light [NEW]** — Anti-Hallucination Protocol upgraded with Green/Yellow/Red classification of AI's role in academic writing. Green (grammar/clarity/outline), Yellow (methods drafting/reviewer-response — requires strong human control), Red (core argument from scratch, invented references, uploading unpublished manuscripts). Inspired by nature-skills `_shared/core/ethics.md`.
+  - **Reviewer Red Lines [NEW]** — Stage 7 now enforces 7 absolute prohibitions: no invented reviewer identities, experiments, validations, controls, citations, figures, or editorial decisions. Grounds every review in manuscript facts + local source basis only. Inspired by nature-reviewer's `role-boundaries.md`.
+  - **Context-Efficient Loading Principle [NEW]** — Architecture section now explicitly states: "detect context → load only what's needed." While SCI-writer remains a single-file install by design, the principle of minimizing irrelevant content per invocation is now codified in the Model Adaptation Layer. Inspired by nature-skills' manifest.yaml + static/dynamic architecture.
+  - **Skills Ecosystem Map Updated** — Added nature-skills 11-piece ecosystem to the availability map with fallback paths.
+
+### What's New in v5.1 (Changelog) — retained
+- **v5.0 → v5.1 — Ecosystem Absorption Update:**
+  - **Mermaid PRISMA Flow Diagram [NEW]** — Stage 2 now outputs a mandatory text-based PRISMA flow diagram (Mermaid in Markdown). Git-diffable, renders natively on GitHub/VS Code, token-efficient. Inspired by literature-review skill's mandatory visual requirement + markdown-mermaid-writing's "text as source of truth" philosophy.
+  - **Graphical Abstract Mandate [NEW]** — Stage 6 now requires a graphical abstract (1200×600px, landscape) as the FIRST figure generated, before any other figures. Inspired by scientific-writing skill's mandatory graphical abstract rule.
+  - **Colorblind-Safe Figure Protocol [NEW]** — Stage 6 matplotlib scripts now default to viridis/cividae colormaps. Figures must pass a "grayscale readability" check. Inspired by infographics skill's accessibility standards.
+  - **Structured Peer Review Report Format [NEW]** — Stage 7 now outputs reviews in a standardized 5-part format: Summary → Major Comments → Minor Comments → Line-by-Line → Questions for Authors. Inspired by peer-review skill's structured review methodology.
+  - **Citation Chaining Protocol (Search Pattern G) [NEW]** — Stage 2 now includes forward citation (papers citing key works) and backward citation (references from key papers) search patterns. Inspired by literature-review skill's citation chaining methodology.
+  - **Formal Study Quality Assessment [NEW]** — Stage 3 synthesis_notes now records study quality using GRADE-like ratings and formal assessment tools (Cochrane RoB, AMSTAR 2, Newcastle-Ottawa). Inspired by literature-review skill's quality assessment framework.
+  - **Field-Specific Language Consistency Check [NEW]** — Stage 5 Pass 2.5 now includes a field terminology consistency audit. Prevents synonym drift and ensures standard nomenclature (gene symbols, IUPAC names, SI units). Inspired by scientific-writing skill's field-specific language guidance.
+  - **Multi-Source Citation Verification [NEW]** — Gate B now uses multiple metadata sources (CrossRef, PubMed, arXiv, DataCite) for DOI verification, not just doi.org. Inspired by citation-management + paper-lookup skills.
+  - **Journal-Tier Quality Thresholds [NEW]** — Gate C now has tiered pass thresholds: Nature/Science (avg≥85), Q1 (avg≥80, baseline), Q2 (avg≥75). Inspired by infographics skill's document-type quality thresholds.
+  - **Skills Ecosystem Map Updated** — Added 8 newly discovered accelerator skills (citation-management, paper-lookup, markdown-mermaid-writing, infographics, etc.) to the availability map.
+
+### What's New in v5.0 (Changelog) — retained
 - **v4.2 → v5.0 major — Quality Architecture Overhaul:**
   - **Thinking-First Protocol [NEW]** — Every stage begins with explicit reasoning before action. Prevents "write first, think later" failure mode that degrades quality in weaker models
   - **Iterative Writing Loop (Stage 5 redesign) [NEW]** — Each section cycles: Think → Draft → Self-Review → Revise until quality threshold met. Max 3 iterations. Dramatically improves output quality for all model tiers
@@ -53,6 +76,17 @@ Some tasks reference skills that may not be installed. SCI-writer has built-in f
 | `paper-verification` | ✓ installed | Use at Gate B for citation check |
 | `latex-document` | ✓ installed | Use at Stage 9 for compilation |
 | `scientific-visualization` | ✓ installed | Use at Stage 6 for figure generation |
+| `citation-management` | ✓ installed | Use at Gate B for multi-source DOI verification |
+| `paper-lookup` | ✓ installed | Use at Stage 2 for 10-database paper search |
+| `markdown-mermaid-writing` | ✓ installed | Use at Stage 2/4 for Mermaid PRISMA + architecture diagrams |
+| `infographics` | ✓ installed | Use at Stage 6 for publication-quality infographics |
+| `scientific-writing` | ✓ installed | Use at Stage 5 for field-specific language guidance |
+| `nature-polishing` | ✗ not installed | Stage 5 iterative loop + Writing Quality Bank (built-in) |
+| `nature-writing` | ✗ not installed | Stage 5 Thinking-First + Confirmation Gate (built-in) |
+| `nature-reviewer` | ✗ not installed | Stage 7 8-reviewer panel + Red Lines (built-in, equivalent) |
+| `nature-citation` | ✗ not installed | Gate B multi-source verification (built-in, more comprehensive) |
+| `nature-figure` | ✗ not installed | Stage 6 + Stage 6.5 figure mount audit (built-in) |
+| `nature-reader` | ✗ not installed | Stage 7 R7 New Reader Simulator (built-in, equivalent) |
 
 **Rule:** when a task prompt names a non-existent skill, substitute the corresponding fallback from this table silently. Do not tell the user "this skill doesn't exist" — just execute the fallback.
 
@@ -62,21 +96,31 @@ Some tasks reference skills that may not be installed. SCI-writer has built-in f
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│              SCI-writer v5.0.0                               │
+│              SCI-writer v5.2.0                               │
 │        Full-Chain Review Paper Pipeline                       │
 ├──────────────────────────────────────────────────────────────┤
 │  CORE PIPELINE — fully self-contained, zero dependencies      │
 │  ─ All 10-stage logic + 3 quality Gates embedded              │
-│  ─ PRISMA search protocol built-in (Stage 2)                  │
+│  ─ PRISMA search protocol + Mermaid PRISMA flow diagram (Stg 2)│
+│  ─ Citation chaining: forward + backward search patterns      │
 │  ─ Iterative writing loop with 5-dimension scoring (Stage 5)  │
+│  ─ Field-specific language consistency audit (Stage 5 Pass 2.5)│
 │  ─ Thinking-First Protocol: explicit reasoning before action  │
 │  ─ Narrative Flow Engine: transition management + argument arc│
 │  ─ Argumentation Templates: AREI pattern for every section    │
 │  ─ Multi-Scale Quality: paragraph → section → paper checks    │
+│  ─ Graphical Abstract mandate (Stage 6) + colorblind-safe figs │
 │  ─ Figure mount + cross-reference audit built-in (Stage 6.5)  │
-│  ─ 8-persona peer review simulation built-in (Stage 7)        │
-│  ─ Anti-hallucination + method-type audit built-in (Gate B)   │
+│  ─ 8-persona peer review simulation + structured report (Stg 7)│
+│  ─ Formal study quality assessment (Cochrane/AMSTAR/GRADE)    │
+│  ─ Anti-hallucination + multi-source citation audit (Gate B)  │
+│  ─ Journal-tier quality thresholds (Gate C)                   │
 │  ─ Self-Correction Protocol: automatic uncertainty detection  │
+│  ─ Confirmation Gate: hard stop on missing claim/evidence      │
+│  ─ Terminology Ledger: proactive canonical extraction          │
+│  ─ Failure Mode Hierarchy: fix priority enforced               │
+│  ─ AI Ethics Traffic-Light: Green/Yellow/Red boundaries        │
+│  ─ Context-Efficient Loading: detect→load only what's needed   │
 │  ─ Works for ANY domain via YAML config                       │
 │  ─ Distributable: ONE file install, full capability           │
 ├──────────────────────────────────────────────────────────────┤
@@ -92,8 +136,14 @@ Some tasks reference skills that may not be installed. SCI-writer has built-in f
 │  ─ academic-paper: 12-agent automated writing                 │
 │  ─ deep-research: automated multi-database PRISMA search      │
 │  ─ literature-review: structured systematic review            │
+│  ─ literature-research: domain intelligence + gap analysis    │
 │  ─ academic-paper-reviewer: automated 5-persona review        │
 │  ─ paper-verification: batch citation integrity check         │
+│  ─ paper-lookup: 10-database paper search (PubMed/arXiv/etc.) │
+│  ─ citation-management: multi-source DOI→BibTeX + validation  │
+│  ─ markdown-mermaid-writing: Mermaid PRISMA + architecture    │
+│  ─ infographics: publication-quality infographic generation   │
+│  ─ scientific-writing: field-specific language + IMRAD guide  │
 │  ─ start-my-day: daily literature monitoring                  │
 │  ─ arxiv-search / tavily-search: fast live search             │
 │                                                               │
@@ -139,8 +189,9 @@ PHASE IV — DELIVERY
 **Goal:** Map the field comprehensively, identify what existing reviews miss, and define the paper's irreplaceable contribution.
 
 **Standalone procedure:**
-1. Ask user to provide: research domain, paper title, target journal, key research groups they know
-2. Generate a conceptual map covering: core technologies → key applications → open challenges → emerging directions
+1. **Check for domain config first:** if a `domain-config.yaml` is loaded (via `/sciw init` or `/sciw load microneedle`), pull paper title, journal, domain, keywords, key research groups, and performance metrics from it. Do NOT re-ask the user for information already in the config.
+2. **Only if no config exists:** ask user to provide research domain, paper title, target journal, key research groups they know.
+3. Generate a conceptual map covering: core technologies → key applications → open challenges → emerging directions
 3. Search for existing reviews in the field (use tavily-search or WebSearch):
    - Query pattern: `"[domain] review [year range]" site:sciencedirect.com OR site:nature.com`
    - Query pattern: `"[domain] comprehensive review" [journal name]`
@@ -225,6 +276,21 @@ Filter: any year, include white papers and regulatory filings
 ```
 Purpose: bridge the lab-to-market gap. Cited in §7 (Challenges & Commercialization).
 
+**Pattern G — Citation Chaining (forward + backward, v5.1 — NEW):**
+```
+Forward citation search:  papers that cite a key/seminal paper
+  → Use Semantic Scholar API or Google Scholar "Cited by" to find newer papers
+    building on foundational work. Identifies research evolution and recent impact.
+Backward citation search:  references cited BY a key paper
+  → Extract the reference list of highly relevant papers to find older
+    foundational works that may have been missed by keyword search.
+```
+Purpose: discover papers that keyword search alone cannot find. Forward chaining finds the latest impact of seminal work; backward chaining finds the intellectual foundations. Especially valuable for:
+- Finding papers that use different terminology for the same concept
+- Discovering "hidden gem" papers with low keyword visibility but high citation impact
+- Building a complete picture of the research lineage
+Execute after Patterns A–F. For each paper identified as highly relevant (top 10% of corpus), run both forward and backward chaining. Add 5–15 additional papers to corpus.
+
 **Search Sources (check in order):**
 1. `tavily-search` with query + `site:pubmed.ncbi.nlm.nih.gov`
 2. `tavily-search` with query + `site:sciencedirect.com`
@@ -284,6 +350,50 @@ Excluded at full-text (reasons):
   - No quantitative data: N = ___
   - Quality threshold fail: N = ___
 ```
+
+**Step 4 — PRISMA Flow Diagram (MANDATORY — v5.1, Mermaid-native, self-contained):**
+
+Every literature review MUST include a PRISMA flow diagram. Use the following Mermaid template — it renders natively on GitHub, VS Code, and any Markdown viewer. Zero external tools required. This is the source of truth; it can be converted to PNG later.
+
+```mermaid
+flowchart TD
+    accTitle: PRISMA 2020 Flow Diagram for Literature Search
+    accDescr: Flow diagram showing the number of records identified, screened, eligible, and included in the systematic review.
+
+    id1["Records identified from:<br/>Database A (n = X)<br/>Database B (n = X)<br/>Database C (n = X)<br/>Citation chaining (n = X)<br/><b>Total (n = X)</b>"]
+    id2["Records after duplicates removed<br/>(n = X)"]
+    id3["Records screened<br/>(title/abstract)<br/>(n = X)"]
+    id4["Records excluded<br/>(n = X)"]
+    id5["Full-text articles assessed<br/>for eligibility<br/>(n = X)"]
+    id6["Full-text articles excluded<br/>with reasons (n = X):<br/>• Wrong topic (n = X)<br/>• No quantitative data (n = X)<br/>• Quality threshold (n = X)<br/>• Method type mismatch (n = X)"]
+    id7["Studies included in review<br/>(n = X)"]
+    id8["Studies included in<br/>quantitative synthesis<br/>(n = X)"]
+
+    id1 --> id2
+    id2 --> id3
+    id3 --> id4
+    id3 --> id5
+    id5 --> id6
+    id5 --> id7
+    id7 --> id8
+
+    classDef box fill:#dbeafe,stroke:#2563eb,stroke-width:2px,color:#1e3a5f
+    classDef excluded fill:#fee2e2,stroke:#dc2626,stroke-width:2px,color:#7f1d1d
+    classDef included fill:#dcfce7,stroke:#16a34a,stroke-width:2px,color:#14532d
+
+    class id1,id2,id3,id5 box
+    class id4,id6 excluded
+    class id7,id8 included
+```
+
+Replace `n = X` placeholders with actual counts from Step 3. The diagram is committed alongside `02_corpus.md` as the visual record of search completeness.
+
+**Diagram benefits (why Mermaid, not PNG):**
+- Git-diffable — reviewers can see exactly how numbers changed between revisions
+- Token-efficient — ~25 lines of text vs ~200+ tokens to describe the flow in prose
+- Always editable — no regeneration needed when counts update
+- Renders natively on GitHub/GitLab/VS Code/Notion — no build step
+- Can be converted to publication-quality PNG later (Phase 3 of the figure pipeline)
 
 ### BibTeX Key Naming Convention (mandatory — prevents cross-session key collisions)
 
@@ -436,7 +546,78 @@ Assign every major extracted finding one of four evidence grades. Note grade in 
 
 **Contradiction resolution:** when two papers report conflicting values for the same metric, present both with exact values and attribute each: "Smith et al. reported X while Jones et al. found Y, likely attributable to [fabrication difference / measurement condition]."
 
+### Formal Study Quality Assessment (v5.1 — NEW)
+
+Beyond per-finding evidence grading, assign each included study an overall quality rating using the appropriate formal assessment tool. Record in `synthesis_notes.md`.
+
+**Quality assessment tools (built-in criteria — no external software required):**
+
+| Study type | Assessment tool | Key criteria |
+|-----------|----------------|--------------|
+| **Randomized controlled trials** | Cochrane Risk of Bias (RoB 2) | Randomization, blinding, missing outcomes, selective reporting |
+| **Observational studies** | Newcastle-Ottawa Scale (NOS) | Selection (0–4★), Comparability (0–2★), Outcome (0–3★) |
+| **Systematic reviews / meta-analyses** | AMSTAR 2 | Protocol registration, comprehensive search, risk of bias assessment, appropriate synthesis |
+| **Diagnostic accuracy studies** | QUADAS-2 | Patient selection, index test, reference standard, flow & timing |
+| **Preclinical / in vitro** | SYRCLE's RoB (adapted) | Randomization, blinding, sample size justification, replication |
+| **Computational / in silico** | Custom: Reproducibility check | Code availability, data availability, parameter documentation, validation dataset |
+
+**Rating scale (record per paper):**
+```
+Quality: ★★★★ (High) — Low risk of bias, well-powered, reproducible
+Quality: ★★★☆☆ (Moderate) — Some concerns, minor limitations
+Quality: ★★☆☆☆ (Low) — Significant methodological concerns
+Quality: ★☆☆☆☆ (Very Low) — High risk of bias, exclude from key claims
+```
+
+**Usage in writing:** When a section's central claim relies on a specific study, note that study's quality rating in the thinking block. Low-quality studies may be cited but should not be the SOLE support for a major claim.
+
 ⚡ **Accelerators (optional):** `paper-analyze` automates per-paper extraction; `systematic-review` provides structured PICOTS-aligned synthesis
+
+### Sub-stage 3.5 — Terminology Ledger (v5.2 — NEW)
+
+**Goal:** Before writing begins, extract a canonical vocabulary that will be enforced across all sections. This is PROACTIVE — it prevents the terminology drift that Pass 2.5 (reactive check) catches later.
+
+**Extraction protocol (run once at Stage 3→4 boundary):**
+
+```
+## Terminology Ledger — [Paper Title]
+*Extracted [date] from corpus (N papers). Enforced across all sections.*
+
+### Methods & Techniques
+| Canonical term | Definition (one sentence) | Synonyms to AVOID | First use: § |
+|---------------|--------------------------|-------------------|-------------|
+| [term 1] | [physical meaning] | [aliases — never use these] | §X.Y |
+
+### Models & Frameworks
+[Same format — canonical name, definition, forbidden aliases, first-use location]
+
+### Datasets & Benchmarks
+[Dataset name, source paper, key characteristics, forbidden aliases]
+
+### Metrics & Units
+| Metric | Canonical unit | Symbol | Forbidden variants |
+|--------|---------------|--------|-------------------|
+| [e.g., Sensitivity] | [e.g., μA mM⁻¹ cm⁻²] | [S] | [never: "slope", "response per concentration"] |
+
+### Abbreviations
+| Abbreviation | Full form | First defined in § |
+|-------------|----------|-------------------|
+| [MNA] | Microneedle Array | §1.1 |
+
+### Notation
+| Symbol | Meaning | Unit | First used in § |
+|--------|---------|------|----------------|
+| [i_p] | Peak current | [A] | §3.2 |
+```
+
+**Enforcement rules:**
+1. **One concept = one term.** Once a canonical term enters the ledger, use it exclusively. Never alternate between "sensor", "electrode", "device", and "probe" for the same physical object.
+2. **First use = definition.** Every abbreviation and technical term must be defined at its FIRST occurrence in the paper, matching the ledger's § location.
+3. **Cross-section consistency.** Before writing §N, scan the ledger for terms defined in §1…§N-1. Reuse the canonical form; do not re-define.
+4. **Pass 2.5 reconciliation.** If Pass 2.5 (field-specific language check) finds a violation, update EITHER the text OR the ledger — but never leave them in conflict.
+5. **Reviewer-ready.** The ledger doubles as the paper's glossary/nomenclature section if the target journal requires one.
+
+**The ledger is committed alongside corpus_notes.md.** It is a living document — add entries as new concepts emerge in later sections, but never change a canonical term once sections using it have been written.
 
 ---
 
@@ -572,7 +753,7 @@ Before finalizing outline, verify:
 
 **Goal:** Write each section to Nature-Communications-level quality through an iterative Think → Draft → Review → Revise loop, with every claim sourced, every number verified, every argument airtight.
 
-**Core change from v4.2:** The sequential 4-pass protocol is replaced by an **iterative quality loop**. Each section cycles through thinking, drafting, self-review, and revision until the section-level quality score reaches ≥70/100 (max 3 iterations). This ensures quality is *achieved*, not just *attempted*.
+**Core change from v4.2:** The sequential 4-pass protocol is **absorbed into** an **iterative quality loop**. Each section cycles through Think → Draft → Self-Review → Revise, with the four-pass checklist (Structure→Content→Pedagogical→Evidence→Flow) run on every iteration. Quality score must reach ≥70/100 (max 3 iterations). This ensures quality is *achieved*, not just *attempted*. The four passes remain as the detailed quality lens; the iterative loop is the outer engine.
 
 ### The Iterative Writing Loop
 
@@ -778,11 +959,11 @@ S = \frac{\Delta i}{\Delta C} \quad [\mu\text{A}\,\text{mM}^{-1}\,\text{cm}^{-2}
 
 Use these formulas consistently. When citing a sensitivity value like "12 μA mM⁻¹ cm⁻²", always confirm it traces to a specific Table/Figure in a verified corpus paper.
 
-### Four-Pass Writing Quality Protocol (built-in)
+### Four-Pass Writing Quality Checklist (embedded in each iteration)
 
-Each section must complete all 4 passes before moving to the next section.
+**The four-pass protocol is now a CHECKLIST within each iteration of the Stage 5 loop, not a separate sequential process.** Each iteration runs these four checks on the draft. The iterative loop (Think→Draft→Review→Revise) is the outer process; the four passes are the inner quality lens.
 
-**Pass 1 — Structure (5–10 min per section):**
+**Pass 1 — Structure (within each iteration):**
 - Write the section heading and 3–5 topic sentences only (one per paragraph)
 - Each topic sentence = a single falsifiable claim the paragraph will prove
 - List at the end: "§[X] makes these claims: [1], [2], [3]"
@@ -801,6 +982,14 @@ Each section must complete all 4 passes before moving to the next section.
 - **Decision guide check:** if this section covers design choices, verify a decision flowchart or selection matrix is referenced (from Stage 4 Sub-stage 4.5). If missing, add a forward reference to the relevant figure.
 - **Quantitative table check:** key performance data is presented in a comparison table (not only in narrative text). Tables serve both quick-reference (expert) and learning (newcomer) purposes.
 - **Section-opening motivation check:** the first paragraph answers "why does this section matter?" before diving into technical content. This is NOT "In this section, we will..." — it is a substantive motivation statement.
+- **Field-specific language consistency check (v5.1 — NEW):** scan the section for these domain-nomenclature violations:
+  - **Synonym drift:** same concept referred to by different terms (e.g., "sensor" / "electrode" / "device" / "probe" used interchangeably without definition). Standardize one term per concept.
+  - **Gene/protein nomenclature:** gene symbols in italics (e.g., *TP53*), proteins in regular font (e.g., p53). Human genes UPPERCASE, mouse genes Sentence case.
+  - **Chemical nomenclature:** IUPAC names for novel compounds, common names only for well-known substances. Concentrations with proper units (mM, μM, nM — never "umol/L").
+  - **SI unit consistency:** same quantity = same unit throughout. Never mix μM and μmol/L for concentration. Use SI standard abbreviations (s not sec, min not mins, h not hr).
+  - **Field-standard abbreviations:** define at first use, then use ONLY the abbreviation (no alternating between "scanning electron microscopy" and "SEM").
+  - **Domain-ontology alignment:** check terms against field-standard ontologies (Gene Ontology, MeSH terms, IUPAC Gold Book) where applicable.
+  - **Colloquialism elimination:** replace informal terms with precise field terminology ("heart attack" → "myocardial infarction"; "lab mouse" → "*Mus musculus* (C57BL/6J)"; "signal noise" → "signal-to-noise ratio (SNR)").
 
 **Pass 3 — Evidence audit (10–15 min per section):**
 - Scan for ALL: numbers, percentages, "first", "highest", "best", "only", "novel", "unprecedented"
@@ -832,12 +1021,52 @@ Each section must complete all 4 passes before moving to the next section.
 
 **Goal:** Create figures that carry scientific argument, not just decoration. Generate all figure files and update LaTeX source.
 
+### Graphical Abstract — MANDATORY FIRST FIGURE (v5.1)
+
+**⚠️ The graphical abstract is the FIRST figure generated — before all other figures. It is not optional.**
+
+- **Specifications:** 1200×600px, landscape orientation, minimal text overlay, suitable for journal Table of Contents display
+- **Content:** Visual summary showing the full workflow from input → methods → key findings → conclusions in 3–5 connected panels
+- **Style:** Clean, professional, colorblind-safe palette. If the target journal publishes graphical abstracts on the TOC, match their style.
+- **Generate FIRST:** before Fig. 1, before any other figure. The graphical abstract crystallizes the paper's narrative — it should guide all other figure design decisions.
+
+```python
+# Graphical abstract generation template (matplotlib — self-contained)
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+fig, ax = plt.subplots(1, 1, figsize=(12, 6))  # 1200×600px at 100 DPI → adjust to 300 DPI at save
+
+# Use colorblind-safe colormap
+from matplotlib import cm
+colors = cm.viridis([0.1, 0.3, 0.5, 0.7, 0.9])  # 5 perceptually uniform colors
+
+# Build panels showing: Problem → Method → System → Results → Impact
+# ... (domain-specific content)
+
+ax.axis('off')
+plt.savefig('graphical_abstract.png', dpi=300, bbox_inches='tight', facecolor='white')
+
+# TOC version: crop or regenerate at 400×300px for B&B Editorial Manager
+# Option A: Use PIL to resize
+from PIL import Image
+img = Image.open('graphical_abstract.png')
+img.thumbnail((400, 300), Image.LANCZOS)
+img.save('graphical_abstract_TOC.png')
+
+# Option B: Regenerate at smaller size if text readability suffers
+# fig.set_size_inches(4, 3)
+# plt.savefig('graphical_abstract_TOC.png', dpi=100, bbox_inches='tight', facecolor='white')
+```
+
 ### Required Figure Set (Minimum for Any Review)
 
 | Figure | Purpose | Content |
 |--------|---------|---------|
-| Graphical Abstract | First impression | Full-chain system overview, 400×300px |
-| Fig. 1 | Motivation | Timeline/growth of field + publication trend |
+| **Graphical Abstract ★** | **MANDATORY — first figure** | Full-chain system overview, 1200×600px landscape |
+| Fig. 1 | Motivation | Timeline/growth of field + publication trend + PRISMA flow |
 | Fig. 2–3 | Foundation | Technology taxonomy (hierarchical diagram) |
 | Fig. 4 | Comparison | Quantitative performance benchmarks (radar/bar) |
 | Fig. 5–6 | Applications | Application domains + representative examples |
@@ -860,10 +1089,41 @@ import matplotlib
 matplotlib.use('Agg')  # headless rendering — no display required
 import matplotlib.pyplot as plt
 # DPI 300 for publication quality
-plt.savefig('fig_0N_name.png', dpi=300, bbox_inches='tight', facecolor='white')
+plt.savefig('fig_0N_description.png', dpi=300, bbox_inches='tight', facecolor='white')
 ```
 
 This approach works regardless of whether pdflatex/TikZ is installed. Always prefer matplotlib over TikZ for standalone figure generation — TikZ requires pdflatex which may not be present.
+
+### Colorblind-Safe Figure Protocol (v5.1 — MANDATORY)
+
+**Every figure must be readable when printed in grayscale and distinguishable by readers with color vision deficiency (CVD, ~8% of males).**
+
+**Default colormaps (use these — never jet/rainbow):**
+```python
+# Sequential data (low→high): 'viridis' (default), 'cividis' (CVD-optimized), 'plasma', 'inferno'
+# Diverging data (±): 'RdBu_r', 'PuOr_r', 'BrBG_r'
+# Qualitative/categorical: 'tab10', 'Set2', 'Dark2' (max 8 categories)
+import matplotlib.cm as cm
+colors = cm.viridis(np.linspace(0, 1, n_categories))
+```
+
+**Forbidden colormaps:** `jet`, `rainbow`, `hsv`, `gist_rainbow` — these are perceptually non-uniform and NOT CVD-friendly. Using them = Stage 6.5 FAIL.
+
+**Grayscale readability check (run before finalizing any figure):**
+```python
+# Convert figure to grayscale and verify all data elements remain distinguishable
+from PIL import Image
+img = Image.open('fig_0N_description.png').convert('L')  # 'L' = grayscale
+img.save('fig_0N_description_grayscale_check.png')
+# Visually inspect: can you still distinguish all data series/regions?
+```
+
+**Additional accessibility requirements:**
+- Error bars: use thickness ≥ 1.5pt for visibility
+- Markers: use distinct shapes (○, □, △, ◇) in addition to color — never color alone
+- Line styles: combine color with dash patterns (-, --, -., :) for redundant encoding
+- Text/axis labels: ≥8pt font size, high contrast against background (≥4.5:1 ratio)
+- Legend: place outside plot area when possible; avoid "traffic light" (red/green-only) encoding
 
 **For schematic/architecture diagrams:**
 - Use `matplotlib.patches.FancyBboxPatch` for boxes, `ax.annotate` with `arrowprops` for arrows
@@ -1069,13 +1329,29 @@ for key in keys:
         print(f"  NON-STANDARD KEY: {key}")
 ```
 
-### Gate B Procedure — Part 1: Existence Check
+### Gate B Procedure — Part 1: Multi-Source Existence Check (v5.1 enhanced)
 
 For each citation flagged [N], [U], or as high-risk (Tier 2/3):
-1. Search: `"[exact title]" [first author] [year]` via tavily-search
-2. If found: verify author names, year, journal, DOI match
-3. If NOT found after 2 searches: mark [NOT_FOUND] — do not invent corrections
-4. If metrics cited (Tier 3): verify the specific number appears in the source paper
+1. **Primary search:** `"[exact title]" [first author] [year]` via tavily-search
+2. **Metadata cross-check:** verify via at least 2 of these sources:
+   - **CrossRef API** (`https://api.crossref.org/works/[DOI]`) — primary source for journal articles
+   - **PubMed E-utilities** (`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&id=[PMID]`) — biomedical literature
+   - **arXiv API** (`https://export.arxiv.org/api/query?id_list=[arXiv_ID]`) — preprints
+   - **Semantic Scholar API** (`https://api.semanticscholar.org/graph/v1/paper/DOI:[DOI]`) — cross-disciplinary
+   - **DataCite API** (`https://api.datacite.org/dois/[DOI]`) — datasets, software
+3. **If found:** verify author names, year, journal, DOI match across sources
+4. **If NOT found after 3 searches (1 text + 2 API):** mark [NOT_FOUND] — do not invent corrections
+5. **If metrics cited (Tier 3):** verify the specific number appears in the source paper's abstract or full text
+
+**Multi-source verification priority by citation type:**
+| Citation type | Primary source | Secondary source |
+|--------------|---------------|-----------------|
+| Journal article | CrossRef | Semantic Scholar |
+| Biomedical paper | PubMed | CrossRef |
+| Preprint (physics/CS) | arXiv | Semantic Scholar |
+| Preprint (biology/med) | bioRxiv/medRxiv | PubMed (if published) |
+| Dataset/software | DataCite | CrossRef |
+| Conference paper | Semantic Scholar | CrossRef |
 
 ### Gate B Procedure — Part 2: Method-Type Consistency Check (NEW in v4.0)
 
@@ -1105,13 +1381,47 @@ AFTER (correct): "As a complementary optical approach, fluorescence-based aptase
                   illustrating that the MNA ISF-sampling platform is transduction-agnostic."
 ```
 
-⚡ **Accelerators (optional):** invoke `paper-verification` (phd-skills) for batch verification; `academic-paper` in citation-check mode
+⚡ **Accelerators (optional):** invoke `paper-verification` (phd-skills) for batch verification; `citation-management` for multi-source DOI→BibTeX conversion; `academic-paper` in citation-check mode
+
+### Gate B Procedure — Part 3: BibTeX Auto-Formatting (v5.1 — NEW)
+
+After all citations pass existence check, run these self-contained Python checks on `references.bib`:
+
+**BibTeX key convention check (built-in):**
+```python
+import re
+with open('references.bib', 'r', encoding='utf-8') as f:
+    bib = f.read()
+keys = re.findall(r'@\w+\{([^,]+),', bib)
+# AuthorYYYYKeyword pattern: CamelCaseLastName + 4-digit year + 2-8 char keyword
+pattern = re.compile(r'^[A-Z][a-z]+(?:[A-Z][a-z]+)?\d{4}[A-Z][a-zA-Z]{1,7}$')
+violations = [k for k in keys if not pattern.match(k)]
+for v in violations:
+    print(f"  NON-STANDARD KEY: {v}")
+```
+
+**Duplicate DOI check (built-in):**
+```python
+dois = re.findall(r'doi\s*=\s*\{([^}]+)\}', bib, re.IGNORECASE)
+from collections import Counter
+dupes = {doi: count for doi, count in Counter(dois).items() if count > 1}
+for doi, count in dupes.items():
+    print(f"  DUPLICATE DOI ({count}x): {doi}")
+```
+
+**Common BibTeX errors auto-fix:**
+- Missing closing braces in author field → flag for manual fix
+- `&` not escaped in publisher field → replace with `\&`
+- Special characters not in braces (e.g., `\o` in author names) → flag
+- Inconsistent page range format (`123-145` instead of `123--145`) → flag
+- Missing DOI field for post-2000 journal articles → flag
 
 ```
 GATE B Checklist:
 [ ] Tier 1 audit: all BibTeX keys follow AuthorYYYYKeyword convention
 [ ] Tier 1 audit: every entry has a DOI field in plausible format
-[ ] Tier 2 audit: all [N] and [U] citations verified (author/year/journal/DOI)
+[ ] Tier 1 audit: zero duplicate DOIs in references.bib
+[ ] Tier 2 audit: all [N] and [U] citations verified via multi-source check (Part 1)
 [ ] Tier 3 audit: all high-risk citations — specific numbers confirmed in source
 [ ] All [NEEDS_REF] placeholders resolved or acknowledged
 [ ] Zero citations marked [NOT_FOUND] remain in draft
@@ -1235,6 +1545,77 @@ Attack vectors:
 
 R8 < 70 = prose revision required in Stage 8 (P1 priority)
 R8 is scored in addition to R1–R7; it specifically evaluates the writing loop output from Stage 5.
+
+### Structured Peer Review Report Format (v5.1 — MANDATORY OUTPUT)
+
+Every Stage 7 simulation MUST produce `review_report.md` in this standardized 5-part format. This mirrors real journal peer review structures and ensures every reviewer concern is actionable.
+
+```
+## Stage 7 Peer Review Report
+**Date:** [ISO datetime]
+**Paper:** [Short title]
+**Round:** [R1 / R2 / R3]
+**Average score (R1–R6):** [X]/100
+
+---
+
+### Summary Statement (1–2 paragraphs)
+[Concise overall assessment: synopsis of the paper + overall recommendation
+(accept/minor/major/reject) + 2–3 key strengths + 2–3 key weaknesses +
+bottom-line assessment of significance and soundness.]
+
+### Major Comments (P0 — Critical Issues)
+Numbered sequentially. Each comment:
+1. **Issue:** [Clear statement of the problem]
+   **Why problematic:** [Impact on validity/interpretability/significance]
+   **Suggested fix:** [Specific, actionable solution]
+   **Essential for publication?** [Yes/No]
+
+### Minor Comments (P1 — Quality Improvements)
+Numbered sequentially. Each comment:
+1. **Location:** [Section, paragraph, figure number]
+   **Issue:** [Clear statement]
+   **Suggested fix:** [Specific edit or addition]
+
+### Line-by-Line Comments (Optional, P2 — Polish)
+Reference specific page/line/section:
+- §X.Y, paragraph N: [factual errors, unclear statements, missing citations]
+- Fig. N: [label issues, unclear presentation]
+
+### Questions for Authors
+[Specific questions needing clarification — methodological details,
+seemingly contradictory results, missing information]
+```
+
+**Tone guidelines for all reviewer comments:**
+- ✅ Constructive: frame criticism as improvement opportunities
+- ✅ Specific: provide concrete examples and actionable suggestions
+- ✅ Balanced: acknowledge strengths alongside weaknesses
+- ✅ Professional: focus on the science, not the scientist
+- ❌ Never: personal attacks, sarcasm, vague criticism without examples
+- ❌ Never: demanding unnecessary experiments beyond scope
+
+### Reviewer Red Lines — 7 Absolute Prohibitions (v5.2 — NEW)
+
+**Every Stage 7 review simulation MUST respect these boundaries. Inspired by nature-reviewer's role-boundaries.**
+
+| # | Red Line | Explanation |
+|---|---------|-------------|
+| 1 | **No invented reviewer identities** | Reviewers differ only in emphasis (R1=domain, R2=adjacent, etc.). Never invent names, institutions, specialties, or biographies. |
+| 2 | **No invented experiments** | Do not suggest "the authors should run [specific new experiment]" unless the missing experiment is a standard control the field REQUIRES. |
+| 3 | **No invented validations** | Do not fabricate validation procedures that don't exist in the literature. |
+| 4 | **No invented controls** | Only flag missing controls if the field's standard practices (CONSORT, STROBE, etc.) explicitly require them. |
+| 5 | **No invented citations** | Every "you omitted [Author Year]" must trace to a paper verified in corpus or found via search this session. |
+| 6 | **No invented figures/line numbers** | Reference only actual figures, tables, and sections present in the manuscript. Do not invent figure numbers. |
+| 7 | **No editorial decisions** | Never say "this paper belongs in Nature" or "this should be rejected." State: "the evidence supports/does not support the claims" and let the editor decide. |
+
+**Grounding rule:** Every reviewer comment must trace to EITHER:
+(a) The manuscript facts supplied by the user, OR
+(b) The local source basis (corpus, synthesis_notes, figure_plan, references.bib)
+
+If neither source supports the comment → do not make it.
+
+---
 
 ### Scoring Protocol
 
@@ -1507,7 +1888,7 @@ if commented:
 [ ] Abstract: ≤300 words, no citations
 [ ] Keywords: 5–8, relevant to Biosensors and Bioelectronics scope
 [ ] Highlights: highlights.txt — 3–5 items, each ≤85 characters
-[ ] Graphical abstract: graphical_abstract.png — 400×300px, minimal text
+[ ] Graphical abstract: graphical_abstract.png (paper version: 1200×600px, landscape) + graphical_abstract_TOC.png (TOC version: 400×300px for B&B Editorial Manager)
 [ ] Figures: ≥300 DPI, EPS preferred, TIFF/PNG acceptable
 [ ] Line numbers enabled (\linenumbers)
 [ ] CRediT author contributions: included in main.tex
@@ -1551,6 +1932,23 @@ GATE C Checklist:
 [ ] Narrative flow: each section opens with bridge from previous, closes with bridge to next
 [ ] Argumentation: each major subsection contains ≥1 complete AREI cycle
 [ ] Central argument: stated in §1, served by every section, restated in §8
+[ ] Graphical Abstract: 1200×600px PNG exists, colorblind-safe palette verified
+[ ] PRISMA flow diagram: Mermaid source committed, numbers match corpus
+[ ] All figures pass grayscale readability check
+[ ] Field-specific language consistency: no synonym drift, standard nomenclature throughout
+
+### Journal-Tier Quality Thresholds (v5.1 — NEW)
+
+Gate C pass thresholds adjust to target journal tier. Higher-tier journals demand higher scores.
+
+| Journal tier | Avg score (R1–R6) | Min single reviewer | R7 min | R8 min | Examples |
+|-------------|-------------------|---------------------|--------|--------|----------|
+| **Tier 1 — Elite** (Nature, Science, Cell, Lancet, NEJM) | ≥ 85 | ≥ 80 | ≥ 80 | ≥ 80 | Nature, Science, Cell, NEJM, Lancet |
+| **Tier 2 — Top Q1** (Nature Comms, Sci Adv, PNAS, Matter, Adv Mater) | ≥ 80 (baseline) | ≥ 75 | ≥ 70 | ≥ 70 | Nature Comms, Science Adv, PNAS, Biosens Bioelectron |
+| **Tier 3 — Strong Q1/Q2** (specialized high-impact) | ≥ 75 | ≥ 70 | ≥ 65 | ≥ 65 | Analytical Chemistry, ACS Nano, Small |
+| **Tier 4 — Q2/Q3** (solid specialized journals) | ≥ 70 | ≥ 65 | ≥ 60 | ≥ 60 | Sensors Actuators B, Talanta, Analyst |
+
+**Auto-detect tier from domain config:** if `paper.journal` is set in `domain-config.yaml`, match against the journal name. If not set, default to Tier 2 (≥ 80 baseline).
 
 PASS → Stage 10
 FAIL → identify failed items, loop back to Stage 5/6.5/7/9 as appropriate
@@ -1600,7 +1998,8 @@ Before listing the submission checklist, classify every outstanding item as:
 ├── fig_04_biomarkers.png       ← Fig. 4
 ├── fig_05_circuits.png         ← Fig. 5
 ├── fig_06_intelligence.png     ← Fig. 6
-├── graphical_abstract.png      ← 400×300px, no text overlay
+├── graphical_abstract.png      ← 1200×600px landscape (paper figure)
+├── graphical_abstract_TOC.png  ← 400×300px (B&B Editorial Manager TOC)
 ├── highlights.txt              ← 3–5 lines, each ≤85 chars
 ├── cover_letter.md             ← Personalized to B&B editorial board
 ├── elsarticle.cls              ← Downloaded from Elsevier [AUTO]
@@ -1623,6 +2022,7 @@ import zipfile, os, re
 
 submission_files = ['main.tex', 'references.bib', 'highlights.txt',
                     'cover_letter.md', 'graphical_abstract.png',
+                    'graphical_abstract_TOC.png',
                     'elsarticle.cls', 'elsarticle-num.bst']
 # Add all fig_*.png
 submission_files += [f for f in os.listdir('.') if re.match(r'fig_\d+.*\.png$', f)]
@@ -1985,6 +2385,37 @@ Label all citations in draft with one of:
 
 Gate B clears all `[N]`, `[X]`, and `[M]` before submission.
 
+### AI Ethics Traffic-Light — Academic Writing Boundaries (v5.2 — NEW)
+
+**Problem this solves:** The Anti-Hallucination Rules prevent fabrication, but they don't address the broader ethical question: *what should AI do vs. not do in academic writing?* This traffic-light system provides clear boundaries adapted from nature-skills `_shared/core/ethics.md`.
+
+**🟢 GREEN — Acceptable with author verification (AI can do these):**
+- Polish grammar, clarity, concision, or tone
+- Generate outlines or paragraph structures for author review
+- Produce alternative titles or abstract phrasing options
+- Summarize literature for categorization (NOT as a reading substitute — always verify against original)
+- Translate text while checking terminology and hedging accuracy
+- Generate figures from verified data using matplotlib (Stage 6)
+- Format references according to journal style (Gate B)
+- Simulate reviewer perspectives based on manuscript facts (Stage 7)
+
+**🟡 YELLOW — Requires strong human control (AI assists, author owns):**
+- Drafting methods or results sections — author must verify every procedural detail against lab notes
+- Drafting reviewer-response frameworks — must be checked line by line
+- Explaining code or statistics — outputs must be reproduced and validated independently
+- Suggesting citations based on topic relevance — must verify paper exists AND method type matches (Gate B)
+- Making novelty claims — every "first", "highest", "best" must trace to verified evidence
+
+**🔴 RED — Generally inappropriate (do NOT do these):**
+- Drafting a paper's core argument from scratch without author's thesis direction
+- Inserting AI-generated references, data, or claims without verification
+- Uploading unpublished manuscripts, sensitive data, or peer-review material to public models
+- Using AI to fabricate, manipulate, or conceal substantive content (data, images, results)
+- Writing with confident incorrectness — if uncertain, flag it; do not proceed as if correct
+- Inventing reviewer identities, experiments, validations, or citation details (Stage 7 Red Lines)
+
+**The central warning:** "AI's real danger isn't an inability to write — it's that AI can write incorrectly with great confidence."
+
 ---
 
 ## Thinking-First Protocol (v5.0 — always active)
@@ -2032,6 +2463,30 @@ Strategy: [How to address the weak point in the writing]
 ```
 
 This thinking block is NOT included in the final paper — it guides the writing process and is discarded after the section passes quality review.
+
+### Confirmation Gate — Hard Stop Protocol (v5.2 — NEW)
+
+**Problem this solves:** The Thinking-First Protocol identifies weak points but doesn't stop the pipeline when foundations are missing. A model that proceeds to write a full section on a false premise wastes the entire draft. This gate enforces a hard stop.
+
+**Trigger:** Before entering Stage 5 (writing) for any section, verify these THREE prerequisites are present:
+
+```
+Confirmation Gate — §X.Y Prerequisites:
+[ ] CLAIM:  "What is the single arguable statement this section proves?"
+    → If absent or vague → HALT. Do not write. Ask the user:
+      "What is the central claim for §X.Y? What must this section prove?"
+[ ] EVIDENCE: "What are the strongest 2–3 papers/data points supporting this claim?"
+    → If none identified → HALT. Flag [NEEDS_EVIDENCE: §X.Y — no corpus papers assigned].
+[ ] BOUNDARY: "What does this claim NOT cover? Where does it stop?"
+    → If unstated → HALT. Define the scope boundary explicitly.
+```
+
+**Gate behavior:**
+- **ALL THREE present → PASS.** Proceed to Stage 5 writing.
+- **ANY missing → HALT.** Echo the one-sentence argument you DO have, ask 2–3 targeted questions to clarify the missing prerequisite(s), and **wait for the user's response** before proceeding.
+- **User insists on proceeding anyway →** Write with explicit `[ASSUMPTION: ...]` placeholders marking where claim/evidence/boundary were absent. These placeholders become P0 fix items for Stage 8.
+
+**This gate is NOT optional.** Drafting on a false premise is the #1 failure mode in AI-assisted academic writing. A wrong assumed premise surfaced only in the final notes wastes the entire draft.
 
 ---
 
@@ -2332,6 +2787,31 @@ Paper-Level Narrative Quality:
 [ ] Tone consistency: no jarring shifts between sections (suggests different authors)
 ```
 
+### Failure Mode Hierarchy — Strict Fix Priority (v5.2 — NEW)
+
+**Problem this solves:** When a draft scores poorly, the natural impulse is to polish sentences. But polishing sentences when the section structure is wrong is wasted effort. This hierarchy enforces fixing problems in the right order.
+
+**The hierarchy (fix in this order — never skip levels):**
+
+| Priority | Level | What to check | Fix strategy | Don't fix with |
+|----------|-------|--------------|-------------|----------------|
+| **L1** | Paper Type | Does the draft match its genre? (review vs. research vs. methods) | Restructure to genre conventions | Sentence polish |
+| **L2** | Section Job | Does each section do its job? (§2=foundation, §3=mechanism, etc.) | Rewrite section-level argument | Better transitions |
+| **L3** | Paragraph Logic | Does each paragraph have a clear claim→evidence→reasoning chain? | Add/rewrite topic sentences, evidence | Synonym replacement |
+| **L4** | Claim/Evidence/Boundary | Is every claim supported? Are limitations stated? | Add citations, state boundaries | Stronger adjectives |
+| **L5** | Sentence Polish | Wordiness, passive overuse, awkward phrasing, filler words | Trim, convert to active, vary structure | — (this is the final step) |
+
+**The golden rule:** "Do not sentence-polish a draft whose section job is wrong."
+
+**Implementation in Stage 5 loop:**
+1. Run the 5-dimension quality scoring
+2. Identify the LOWEST level (L1→L5) where issues exist
+3. Fix that level FIRST, before addressing any higher-numbered level
+4. Re-score after L1-L4 fixes. Only proceed to L5 when L1-L4 are clean.
+5. A draft with beautiful sentences but wrong structure = Stage 5 FAIL.
+
+**Cross-cutting check (runs at ALL levels):** Terminology consistency — reuse canonical terms from the Terminology Ledger. This is not a level because it applies everywhere.
+
 ---
 
 ## Self-Correction Protocol (v5.0 — automatic error prevention)
@@ -2424,10 +2904,17 @@ If ANY answer is "no" or "I'm not sure" — fix it now, not later.
 | Peer review simulation | 8-reviewer panel (R1-R8) built-in in Stage 7 | `academic-paper-reviewer` |
 | Rebuttal engineering | Stage 8 rebuttal template built-in | `reviewer-defense` |
 | LaTeX compilation | Claude generates .tex with embedded template | `latex-document` + `latex-setup` |
-| Figures | Python/matplotlib generation (Stage 6) | `scientific-visualization` + `scientific-slides` |
+| Figures | Python/matplotlib generation (Stage 6) + colorblind-safe protocol | `scientific-visualization` + `scientific-slides` + `infographics` |
+| Graphical abstract | 1200×600px mandatory figure (Stage 6) | `infographics` + `scientific-schematics` |
+| Mermaid PRISMA diagram | Text-based flow diagram (Stage 2, self-contained) | `markdown-mermaid-writing` (for advanced diagram types) |
+| Literature search (10 DBs) | tavily-search + WebSearch built-in | `paper-lookup` (10 database REST APIs) |
+| Multi-source citation verify | Gate B Part 1 built-in protocol | `citation-management` (CrossRef+PubMed+arXiv+DataCite) |
 | Journal submission | Stage 10 checklist + cover letter template | `research-publishing` |
+| Nature-level polishing | Iterative loop + Writing Quality Bank (built-in) | `nature-polishing` (Nature style fragments + phrasebank) |
+| Nature-level writing | Thinking-First + Confirmation Gate (built-in) | `nature-writing` (4-axis routing + stance/ethics) |
+| Nature-style reviewer | 8-reviewer panel + Red Lines + structured report (built-in) | `nature-reviewer` (3-reviewer + cross-review synthesis) |
 
-**Principle:** installing zero accelerators → full pipeline runs, same 3 Gates + Stage 6.5, same quality standard.
+**Principle:** installing zero accelerators → full pipeline runs, same 3 Gates + Stage 6.5, same quality standard. All nature-skills capabilities are built into the core — nature-polishing/nature-writing/nature-reviewer are optional accelerators that add journal-specific style fragments, not new capabilities.
 
 ---
 
@@ -2442,8 +2929,10 @@ If ANY answer is "no" or "I'm not sure" — fix it now, not later.
 ├── review_gap_analysis.md    (Stage 1: gap analysis + existing reviews)
 ├── literature_matrix.xlsx    (Stage 2: full corpus table)
 ├── corpus_notes.md           (Stage 3: per-paper synthesis extractions with method types)
+├── terminology_ledger.md     (Stage 3.5: canonical vocabulary — enforced across all sections)
 ├── paper_outline.md          (Stage 4: section outline + figure-label mapping)
 ├── figure_plan.md            (Stage 6: figure specs with planned \ref{} sentences)
+├── prisma_flow.md            (Stage 2: Mermaid PRISMA flow diagram source)
 ├── references.bib            (Stage 2–9: cumulative BibTeX database)
 │
 │  ── Phase 2 outputs ──
@@ -2452,7 +2941,8 @@ If ANY answer is "no" or "I'm not sure" — fix it now, not later.
 ├── fig_01_[description].png  (Stage 6: figures, named fig_NN_*)
 ├── fig_02_[description].png
 ├── ...
-├── graphical_abstract.png    (Stage 6: 400×300px)
+├── graphical_abstract.png    (Stage 6: 1200×600px landscape)
+├── graphical_abstract_TOC.png (Stage 10: 400×300px for B&B Editorial Manager)
 ├── elsarticle.cls            (Stage 9: downloaded [AUTO])
 ├── elsarticle-num.bst        (Stage 9: downloaded [AUTO])
 │
@@ -2470,10 +2960,11 @@ If ANY answer is "no" or "I'm not sure" — fix it now, not later.
 At the end of each major phase, output:
 ```
 [✓ Phase I完成] 输出物：review_gap_analysis.md (N gaps), corpus_notes.md (N papers, method types recorded),
-paper_outline.md (N sections), figure_plan.md (N figures with \ref locations), references.bib (N entries)
+terminology_ledger.md (N canonical terms), paper_outline.md (N sections), figure_plan.md (N figures with \ref locations),
+prisma_flow.md (Mermaid PRISMA diagram), references.bib (N entries)
 
 [✓ Phase II完成] 输出物：main.tex (N words), generate_figures.py, fig_01–fig_0N.png,
-graphical_abstract.png, Stage 6.5 audit PASSED (0 orphan figures, 0 commented-out)
+graphical_abstract.png (1200×600px), Stage 6.5 audit PASSED (0 orphan figures, 0 commented-out)
 
 [✓ Phase III完成] 输出物：review_report.md (avg score X/100, all 6 reviewers ≥65),
 revision_log.md (N revisions), gate_c_checklist.md (all ✓)
@@ -2512,11 +3003,11 @@ revision_log.md (N revisions), gate_c_checklist.md (all ✓)
 | Gate C | ✅ PASS / ❌ FAIL | [date] | [final score, word count] |
 
 ## Stage 7 Score History
-| Round | Date | Avg | R1 | R2 | R3 | R4 | R5 | R6 | P0 issues | P1 issues |
-|-------|------|-----|----|----|----|----|----|----|-----------|-----------|
-| R1 | [date] | [score] | ... | ... | ... | ... | ... | ... | [list] | [list] |
-| R2 | [date] | [score] | ... | | | | | | | |
-| R3 | [date] | [score] | ... | | | | | | | |
+| Round | Date | Avg(R1-R6) | R1 | R2 | R3 | R4 | R5 | R6 | R7 | R8 | P0 issues | P1 issues |
+|-------|------|-----------|----|----|----|----|----|----|----|----|-----------|-----------|
+| R1 | [date] | [score] | ... | ... | ... | ... | ... | ... | ... | ... | [list] | [list] |
+| R2 | [date] | [score] | ... | | | | | | ... | ... | | |
+| R3 | [date] | [score] | ... | | | | | | ... | ... | | |
 
 ## Corpus Status
 - Total papers: [N]
@@ -2526,10 +3017,19 @@ revision_log.md (N revisions), gate_c_checklist.md (all ✓)
 - Method-type flags [M]: [N]
 - BibTeX key violations: [list or "none"]
 
+## Artifacts Status
+| Artifact | Status | Notes |
+|----------|--------|-------|
+| terminology_ledger.md | ✅/❌ | N canonical terms extracted |
+| prisma_flow.md | ✅/❌ | Mermaid diagram committed |
+| graphical_abstract.png | ✅/❌ | 1200×600px, colorblind-safe |
+| graphical_abstract_TOC.png | ✅/❌ | 400×300px for B&B EM |
+| Confirmation Gate passed | ✅/❌ | All sections have claim/evidence/boundary |
+
 ## Figures Status
-| File | Generated | \includegraphics active | \ref{} in text |
-|------|-----------|------------------------|----------------|
-| fig_01_*.png | ✅/❌ | ✅/❌ | ✅/❌ |
+| File | Generated | \includegraphics active | \ref{} in text | Grayscale check |
+|------|-----------|------------------------|----------------|-----------------|
+| fig_01_*.png | ✅/❌ | ✅/❌ | ✅/❌ | ✅/❌ |
 
 ## Outstanding Items
 - [ ] [Item 1] — [USER/AUTO] — [priority]
@@ -2558,11 +3058,12 @@ When starting a new session on an existing project:
 ```
 
 **Write `sci_writer_state.md` after completing each of these pipeline events:**
-- Each stage completion
+- Each stage completion (including Stage 3.5 Terminology Ledger)
 - Each Gate pass/fail decision
 - Each Stage 7 scoring round
 - Each Stage 8 revision batch (P0, P1)
-- Each major file generation (figures, templates)
+- Each major file generation (figures, templates, graphical_abstract_TOC.png)
+- Confirmation Gate: when all sections pass claim/evidence/boundary check
 
 ---
 
@@ -2577,9 +3078,11 @@ If the user has a global CLAUDE.md, this skill respects those rules:
 
 ---
 
-*SCI-writer v5.0.0 — Designed for researchers who want to write papers, not manage tools.*
+*SCI-writer v5.2.0 — Designed for researchers who want to write papers, not manage tools.*
+*v5.2 major: Nature-Skills Absorption — Confirmation Gate (hard stop on missing evidence) · Terminology Ledger (proactive canonical extraction) · Failure Mode Hierarchy (L1→L5 strict fix priority) · AI Ethics Traffic-Light (Green/Yellow/Red boundaries) · Reviewer Red Lines (7 absolute prohibitions) · Context-Efficient Loading Principle*
+*v5.1 major: Ecosystem Absorption — Mermaid PRISMA Flow Diagram · Graphical Abstract Mandate · Colorblind-Safe Figure Protocol · Structured Peer Review Report Format · Citation Chaining (Pattern G) · Formal Study Quality Assessment · Field-Specific Language Consistency Check · Multi-Source Citation Verification · Journal-Tier Quality Thresholds · Skills Ecosystem Map Expanded (8 new accelerators)*
 *v5.0 major: Thinking-First Protocol · Iterative Writing Loop (Think→Draft→Review→Revise) · Narrative Flow Engine · Argumentation Templates (AREI) · Multi-Scale Quality System · Model Adaptation Layer (4 tiers) · Writing Quality Bank · R8 Writing Quality Auditor · Self-Correction Protocol · Nature-Level Writing Benchmark*
 *v4.2: Unified pedagogical-rigor framework · Technology history + measurement chain framework · Search Pattern D/E/F · Knowledge scaffolding · Pass 2.5 pedagogical enhancement · R7 new reader simulator · Decision flowcharts · Commercial benchmarks · Chinese research groups*
 *v4.1: Pipeline state persistence · BibTeX key convention · Gate A exception path · Verification scripts · Table legend check · Elsevier URL fix · Stage 7 threshold fix*
 *v4.0: Stage 6.5 · R6 reviewer · Method-type consistency · Score escalation · [AUTO]/[USER] classification*
-*SJTU Wang Lab | 张元杰 + 王侃 | Updated: 2026-05-29*
+*SJTU Wang Lab | 张元杰 + 王侃 | Updated: 2026-06-23*
